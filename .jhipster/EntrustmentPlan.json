@@ -1,0 +1,39 @@
+{
+    "name": "EntrustmentPlan",
+    "fields": [
+        {
+            "fieldName": "academicYear",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "semesterType",
+            "fieldType": "SemesterType",
+            "fieldValues": "SUMMER,WINTER"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "entrustment",
+            "otherEntityRelationshipName": "entrustmentPlan",
+            "relationshipName": "entrustments"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "educationPlan",
+            "otherEntityRelationshipName": "entrustmentPlans",
+            "relationshipName": "educationPlan",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200117082921",
+    "entityTableName": "entrustment_plan",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

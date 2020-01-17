@@ -1,0 +1,10 @@
+{
+  "powierzeniaApp": {
+    "Specialization": {
+      "null": "",
+      "SOFTWARE_DEVELOPMENT": "SOFTWARE_DEVELOPMENT",
+      "IT_SYSTEMS_DESIGN": "IT_SYSTEMS_DESIGN",
+      "DATA_SCIENCE": "DATA_SCIENCE"
+    }
+  }
+}

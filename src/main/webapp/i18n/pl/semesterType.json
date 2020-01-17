@@ -1,0 +1,9 @@
+{
+  "powierzeniaApp": {
+    "SemesterType": {
+      "null": "",
+      "SUMMER": "SUMMER",
+      "WINTER": "WINTER"
+    }
+  }
+}

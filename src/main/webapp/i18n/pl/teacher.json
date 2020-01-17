@@ -1,0 +1,32 @@
+{
+  "powierzeniaApp": {
+    "teacher": {
+      "home": {
+        "title": "Teacher",
+        "createLabel": "Dodaj Teacher",
+        "createOrEditLabel": "Dodaj lub edytuj: Teacher",
+        "notFound": "No Teachers found"
+      },
+      "created": "Utworzono nowy obiekt typu Teacher z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Teacher z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Teacher z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Teacher {{ id }}?"
+      },
+      "detail": {
+        "title": "Teacher"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "hourLimit": "Hour Limit",
+      "pensum": "Pensum",
+      "agreedToAdditionalPensum": "Agreed To Additional Pensum",
+      "type": "Type",
+      "entrustments": "Entrustments",
+      "allowedClassForms": "Allowed Class Forms",
+      "knowledgeAreas": "Knowledge Areas",
+      "preferedCourses": "Prefered Courses"
+    }
+  }
+}

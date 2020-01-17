@@ -46,6 +46,30 @@ public class CacheConfiguration {
             createCache(cm, edu.psi.powierzenia.domain.User.class.getName(), jcacheConfiguration);
             createCache(cm, edu.psi.powierzenia.domain.Authority.class.getName(), jcacheConfiguration);
             createCache(cm, edu.psi.powierzenia.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Teacher.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Teacher.class.getName() + ".entrustments", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Teacher.class.getName() + ".allowedClassForms", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Teacher.class.getName() + ".knowledgeAreas", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Teacher.class.getName() + ".preferedCourses", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Entrustment.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.CourseClass.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.CourseClass.class.getName() + ".entrustments", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Course.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Course.class.getName() + ".classes", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Course.class.getName() + ".tags", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.Course.class.getName() + ".teachersThatPreferThisCourses", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.EducationPlan.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.EducationPlan.class.getName() + ".entrustmentPlans", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.EducationPlan.class.getName() + ".courses", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.EntrustmentPlan.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.EntrustmentPlan.class.getName() + ".entrustments", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.FieldOfStudy.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.FieldOfStudy.class.getName() + ".educationPlans", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.KnowledgeArea.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.KnowledgeArea.class.getName() + ".teachersWithThisKnowledgeAreas", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.KnowledgeArea.class.getName() + ".coursesWithThisKnowledgeAreas", jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.ClassForm.class.getName(), jcacheConfiguration);
+            createCache(cm, edu.psi.powierzenia.domain.ClassForm.class.getName() + ".teachersAllowedToTeachThisForms", jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }

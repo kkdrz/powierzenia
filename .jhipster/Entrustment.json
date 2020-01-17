@@ -1,0 +1,46 @@
+{
+    "name": "Entrustment",
+    "fields": [
+        {
+            "fieldName": "hours",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoursMultiplier",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "entrustmentPlan",
+            "otherEntityRelationshipName": "entrustments",
+            "relationshipName": "entrustmentPlan",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "courseClass",
+            "otherEntityRelationshipName": "entrustments",
+            "relationshipName": "courseClass",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "teacher",
+            "otherEntityRelationshipName": "entrustments",
+            "relationshipName": "teacher",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200117082917",
+    "entityTableName": "entrustment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

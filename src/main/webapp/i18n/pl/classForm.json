@@ -1,0 +1,23 @@
+{
+  "powierzeniaApp": {
+    "classForm": {
+      "home": {
+        "title": "Class Form",
+        "createLabel": "Dodaj Class Form",
+        "createOrEditLabel": "Dodaj lub edytuj: Class Form",
+        "notFound": "No Class Forms found"
+      },
+      "created": "Utworzono nowy obiekt typu Class Form z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Class Form z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Class Form z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Class Form {{ id }}?"
+      },
+      "detail": {
+        "title": "Class Form"
+      },
+      "type": "Type",
+      "teachersAllowedToTeachThisForm": "Teachers Allowed To Teach This Form"
+    }
+  }
+}

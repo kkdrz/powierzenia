@@ -1,0 +1,9 @@
+{
+  "powierzeniaApp": {
+    "StudiesType": {
+      "null": "",
+      "STATIONARY": "STATIONARY",
+      "NONSTATIONARY": "NONSTATIONARY"
+    }
+  }
+}

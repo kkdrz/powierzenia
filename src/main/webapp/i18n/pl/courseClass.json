@@ -1,0 +1,25 @@
+{
+  "powierzeniaApp": {
+    "courseClass": {
+      "home": {
+        "title": "Course Class",
+        "createLabel": "Dodaj Course Class",
+        "createOrEditLabel": "Dodaj lub edytuj: Course Class",
+        "notFound": "No Course Classes found"
+      },
+      "created": "Utworzono nowy obiekt typu Course Class z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Course Class z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Course Class z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Course Class {{ id }}?"
+      },
+      "detail": {
+        "title": "Course Class"
+      },
+      "hours": "Hours",
+      "form": "Form",
+      "entrustments": "Entrustments",
+      "course": "Course"
+    }
+  }
+}

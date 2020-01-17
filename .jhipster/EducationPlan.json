@@ -1,0 +1,55 @@
+{
+    "name": "EducationPlan",
+    "fields": [
+        {
+            "fieldName": "startAcademicYear",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "specialization",
+            "fieldType": "Specialization",
+            "fieldValues": "SOFTWARE_DEVELOPMENT,IT_SYSTEMS_DESIGN,DATA_SCIENCE"
+        },
+        {
+            "fieldName": "studiesLevel",
+            "fieldType": "StudiesLevel",
+            "fieldValues": "I,II"
+        },
+        {
+            "fieldName": "studiesType",
+            "fieldType": "StudiesType",
+            "fieldValues": "STATIONARY,NONSTATIONARY"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "entrustmentPlan",
+            "otherEntityRelationshipName": "educationPlan",
+            "relationshipName": "entrustmentPlans"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "educationPlan",
+            "relationshipName": "courses"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "fieldOfStudy",
+            "otherEntityRelationshipName": "educationPlans",
+            "relationshipName": "fieldOfStudy",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200117082920",
+    "entityTableName": "education_plan",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

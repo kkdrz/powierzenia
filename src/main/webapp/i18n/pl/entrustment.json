@@ -1,0 +1,26 @@
+{
+  "powierzeniaApp": {
+    "entrustment": {
+      "home": {
+        "title": "Entrustment",
+        "createLabel": "Dodaj Entrustment",
+        "createOrEditLabel": "Dodaj lub edytuj: Entrustment",
+        "notFound": "No Entrustments found"
+      },
+      "created": "Utworzono nowy obiekt typu Entrustment z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Entrustment z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Entrustment z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Entrustment {{ id }}?"
+      },
+      "detail": {
+        "title": "Entrustment"
+      },
+      "hours": "Hours",
+      "hoursMultiplier": "Hours Multiplier",
+      "entrustmentPlan": "Entrustment Plan",
+      "courseClass": "Course Class",
+      "teacher": "Teacher"
+    }
+  }
+}

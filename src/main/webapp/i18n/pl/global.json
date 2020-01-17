@@ -7,6 +7,15 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Encje",
+        "teacher": "Teacher",
+        "entrustment": "Entrustment",
+        "courseClass": "Course Class",
+        "course": "Course",
+        "educationPlan": "Education Plan",
+        "entrustmentPlan": "Entrustment Plan",
+        "fieldOfStudy": "Field Of Study",
+        "knowledgeArea": "Knowledge Area",
+        "classForm": "Class Form",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
