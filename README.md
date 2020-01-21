@@ -1,4 +1,4 @@
-# Powierzenia
+# powierzenia
 
 This application was generated using JHipster 6.6.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.6.0](https://www.jhipster.tech/documentation-archive/v6.6.0).
 
@@ -122,7 +122,7 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ### Packaging as jar
 
-To build the final jar and optimize the Powierzenia application for production, run:
+To build the final jar and optimize the powierzenia application for production, run:
 
     ./gradlew -Pprod clean bootJar
 

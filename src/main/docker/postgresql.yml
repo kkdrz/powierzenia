@@ -3,9 +3,9 @@ services:
   powierzenia-postgresql:
     image: postgres:11.6
     # volumes:
-    #     - ~/volumes/jhipster/Powierzenia/postgresql/:/var/lib/postgresql/data/
+    #     - ~/volumes/jhipster/powierzenia/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=Powierzenia
+      - POSTGRES_USER=powierzenia
       - POSTGRES_PASSWORD=
     ports:
       - 5432:5432

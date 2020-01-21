@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Button, Col, Progress, Row, Table } from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
+import {Button, Col, Row} from 'reactstrap';
 import {
   CacheMetrics,
   DatasourceMetrics,
+  EndpointsRequestsMetrics,
   GarbageCollectorMetrics,
   HttpRequestMetrics,
   JvmMemory,
   JvmThreads,
-  EndpointsRequestsMetrics,
-  SystemMetrics,
-  Translate
+  SystemMetrics
 } from 'react-jhipster';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { APP_TIMESTAMP_FORMAT, APP_TWO_DIGITS_AFTER_POINT_NUMBER_FORMAT, APP_WHOLE_NUMBER_FORMAT } from 'app/config/constants';
-import { systemMetrics, systemThreadDump } from '../administration.reducer';
-import { IRootState } from 'app/shared/reducers';
+import {
+  APP_TIMESTAMP_FORMAT,
+  APP_TWO_DIGITS_AFTER_POINT_NUMBER_FORMAT,
+  APP_WHOLE_NUMBER_FORMAT
+} from 'app/config/constants';
+import {systemMetrics, systemThreadDump} from '../administration.reducer';
+import {IRootState} from 'app/shared/reducers';
 
 export interface IMetricsPageProps extends StateProps, DispatchProps {}
 
@@ -43,10 +46,7 @@ export const MetricsPage = (props: IMetricsPageProps) => {
       <p>
         <Button onClick={getMetrics} color={isFetching ? 'btn btn-danger' : 'btn btn-primary'} disabled={isFetching}>
           <FontAwesomeIcon icon="sync" />
-          &nbsp;
-          <Translate component="span" contentKey="health.refresh.button">
-            Refresh
-          </Translate>
+          &nbsp; Refresh
         </Button>
       </p>
       <hr />

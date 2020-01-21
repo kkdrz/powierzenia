@@ -1,5 +1,0 @@
-export const enum TeacherType {
-  EXTERNAL_SPECIALIST,
-  DOCTORATE_STUDENT,
-  ACADEMIC_TEACHER
-}

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Translate } from 'react-jhipster';
-import { Table, Badge, Col, Row, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
 
-import { IRootState } from 'app/shared/reducers';
-import { systemHealth } from '../administration.reducer';
+import {Badge, Button, Col, Row, Table} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+import {IRootState} from 'app/shared/reducers';
+import {systemHealth} from '../administration.reducer';
 import HealthModal from './health-modal';
 
 export interface IHealthPageProps extends StateProps, DispatchProps {}
@@ -42,10 +42,7 @@ export const HealthPage = (props: IHealthPageProps) => {
       <p>
         <Button onClick={getSystemHealth} color={isFetching ? 'btn btn-danger' : 'btn btn-primary'} disabled={isFetching}>
           <FontAwesomeIcon icon="sync" />
-          &nbsp;
-          <Translate component="span" contentKey="health.refresh.button">
-            Refresh
-          </Translate>
+          &nbsp; Refresh
         </Button>
       </p>
       <Row>
