@@ -1,14 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
-const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 const utils = require('./utils.js');
 
-const getTsLoaderRule = env =;
->
-{
+const getTsLoaderRule = env => {
   const rules = [
     {
       loader: 'cache-loader',
@@ -39,10 +38,9 @@ const getTsLoaderRule = env =;
     });
   }
   return rules;
-}
-module.exports = options =;
->
-({
+};
+
+module.exports = options => ({
   cache: options.env !== 'production',
   resolve: {
     extensions: [
@@ -99,6 +97,7 @@ module.exports = options =;
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `'${options.env}'`,
+        BUILD_TIMESTAMP: `'${new Date().getTime()}'`,
         // APP_VERSION is passed as an environment variable from the Gradle / Maven build tasks.
         VERSION: `'${process.env.hasOwnProperty('APP_VERSION') ? process.env.APP_VERSION : 'DEV'}'`,
         DEBUG_INFO_ENABLED: options.env === 'development',
@@ -109,27 +108,30 @@ module.exports = options =;
         SERVER_API_URL: `''`
       }
     }),
-    new ForkTsCheckerWebpackPlugin({eslint: true}),
+    new ForkTsCheckerWebpackPlugin({ eslint: true }),
     new CopyWebpackPlugin([
-      {
-        from: './node_modules/swagger-ui-dist/*.{js,css,html,png}',
-        to: 'swagger-ui',
-        flatten: true,
-        ignore: ['index.html']
-      },
-      {from: './node_modules/axios/dist/axios.min.js', to: 'swagger-ui'},
-      {from: './src/main/webapp//swagger-ui/', to: 'swagger-ui'},
-      {from: './src/main/webapp/content/', to: 'content'},
-      {from: './src/main/webapp/favicon.ico', to: 'favicon.ico'},
-      {from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp'},
+      { from: './node_modules/swagger-ui-dist/*.{js,css,html,png}', to: 'swagger-ui', flatten: true, ignore: ['index.html']},
+      { from: './node_modules/axios/dist/axios.min.js', to: 'swagger-ui'},
+      { from: './src/main/webapp//swagger-ui/', to: 'swagger-ui' },
+      { from: './src/main/webapp/content/', to: 'content' },
+      { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
+      { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
       // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
-      {from: './src/main/webapp/robots.txt', to: 'robots.txt'}
+      { from: './src/main/webapp/robots.txt', to: 'robots.txt' }
     ]),
     new HtmlWebpackPlugin({
       template: './src/main/webapp/index.html',
       chunksSortMode: 'dependency',
       inject: 'body'
     }),
-    new BaseHrefWebpackPlugin({baseHref: '/'}),
+    new BaseHrefWebpackPlugin({ baseHref: '/' }),
+    new MergeJsonWebpackPlugin({
+      output: {
+        groupBy: [
+                    { pattern: "./src/main/webapp/i18n/pl/*.json", fileName: "./i18n/pl.json" }
+                    // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
+                ]
+      }
+    }),
   ]
 });
