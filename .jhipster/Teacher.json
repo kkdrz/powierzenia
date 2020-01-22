@@ -1,0 +1,76 @@
+{
+  "name": "Teacher",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hourLimit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pensum",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "agreedToAdditionalPensum",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TeacherType",
+      "fieldValues": "EXTERNAL_SPECIALIST,DOCTORATE_STUDENT,ACADEMIC_TEACHER"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "entrustment",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "entrustments"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "classForm",
+      "otherEntityRelationshipName": "teachersAllowedToTeachThisForm",
+      "relationshipName": "allowedClassForms",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "knowledgeArea",
+      "otherEntityRelationshipName": "teachersWithThisKnowledgeArea",
+      "relationshipName": "knowledgeAreas",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "teachersThatPreferThisCourse",
+      "relationshipName": "preferedCourses",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20200122125504",
+  "entityTableName": "teacher",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  powierzenia-postgresql:
+    extends:
+      file: postgresql.yml
+      service: powierzenia-postgresql
+  keycloak:
+    extends:
+      file: keycloak.yml
+      service: keycloak
