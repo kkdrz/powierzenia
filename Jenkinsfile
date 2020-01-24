@@ -5,7 +5,7 @@ node {
         checkout scm
     }
 
-    docker.image('jhipster/jhipster:v6.6.0').inside('-u jhipster -e GRADLE_USER_HOME=.gradle') {
+    docker.image('jhipster/jhipster:v6.6.0').inside('-u jhipster -e GRADLE_USER_HOME=.gradle -v /var/run/docker.sock:/var/run/docker.sock') {
         stage('check java') {
             sh "java -version"
         }
