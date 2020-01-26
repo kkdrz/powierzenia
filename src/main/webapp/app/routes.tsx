@@ -9,6 +9,7 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import PageNotFound from 'app/shared/error/page-not-found';
 import {AUTHORITIES} from 'app/config/constants';
+import TeachersPreferences from "app/modules/teachersPreferences/teachersPreferences";
 
 const Admin = Loadable({
   loader: () => import(/* webpackChunkName: "administration" */ 'app/modules/administration'),
@@ -18,6 +19,7 @@ const Admin = Loadable({
 const Routes = () => (
   <div className="view-routes">
     <Switch>
+      <PrivateRoute path="/preferences" component={TeachersPreferences} hasAnyAuthorities={[AUTHORITIES.TEACHER]}/>
       <ErrorBoundaryRoute path="/logout" component={Logout}/>
       <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]}/>
       <ErrorBoundaryRoute path="/" exact component={Home}/>
