@@ -73,6 +73,22 @@
         "clientRole": false,
         "containerId": "jhipster",
         "attributes": {}
+      },
+      {
+        "id": "45d9c97e-e42c-46f7-8255-16a75637b7b3",
+        "name": "ROLE_ENTRUSTER",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "jhipster",
+        "attributes": {}
+      },
+      {
+        "id": "bac33341-b09e-4a28-a19f-acd27c0a97da",
+        "name": "ROLE_ENTRUSTEE",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "jhipster",
+        "attributes": {}
       }
     ],
     "client": {

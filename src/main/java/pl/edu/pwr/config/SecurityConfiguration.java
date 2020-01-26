@@ -87,6 +87,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+
+            .antMatchers("/class-forms/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers(HttpMethod.GET, "/class-forms/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/course-classes/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
+            .antMatchers(HttpMethod.GET, "/course-classes/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/courses/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
+            .antMatchers(HttpMethod.GET, "/courses/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/education-plans/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
+            .antMatchers(HttpMethod.GET, "/education-plans/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/entrustment-plans/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
+            .antMatchers(HttpMethod.GET, "/entrustment-plans/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/entrustments/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
+            .antMatchers(HttpMethod.GET, "/entrustments/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/field-of-studies/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers(HttpMethod.GET, "/field-of-studies/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/knowledge-areas/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers(HttpMethod.GET, "/knowledge-areas/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+
+            .antMatchers("/teachers/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTEE, AuthoritiesConstants.ENTRUSTEE)
+
             .and()
             .oauth2Login()
             .and()
