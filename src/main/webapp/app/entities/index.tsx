@@ -20,11 +20,11 @@ const Routes = ({match}) => (
     <Switch>
       {/* prettier-ignore */}
       <PrivateRoute path={`${match.url}teacher`} hasAnyAuthorities={[AUTHORITIES.ADMIN]} component={Teacher}/>
-      <PrivateRoute path={`${match.url}entrustment`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.ENTRUSTEE]} component={Entrustment}/>
-      <PrivateRoute path={`${match.url}course-class`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.ENTRUSTEE]} component={CourseClass}/>
-      <PrivateRoute path={`${match.url}course`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.ENTRUSTEE]} component={Course}/>
-      <PrivateRoute path={`${match.url}education-plan`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.ENTRUSTEE]} component={EducationPlan}/>
-      <PrivateRoute path={`${match.url}entrustment-plan`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.ENTRUSTEE]} component={EntrustmentPlan}/>
+      <PrivateRoute path={`${match.url}entrustment`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.TEACHER]} component={Entrustment}/>
+      <PrivateRoute path={`${match.url}course-class`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.TEACHER]} component={CourseClass}/>
+      <PrivateRoute path={`${match.url}course`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.TEACHER]} component={Course}/>
+      <PrivateRoute path={`${match.url}education-plan`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.TEACHER]} component={EducationPlan}/>
+      <PrivateRoute path={`${match.url}entrustment-plan`} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.ENTRUSTER, AUTHORITIES.TEACHER]} component={EntrustmentPlan}/>
       <PrivateRoute path={`${match.url}field-of-study`} hasAnyAuthorities={[AUTHORITIES.ADMIN]} component={FieldOfStudy}/>
       <PrivateRoute path={`${match.url}knowledge-area`} hasAnyAuthorities={[AUTHORITIES.ADMIN]} component={KnowledgeArea}/>
       <PrivateRoute path={`${match.url}class-form`} hasAnyAuthorities={[AUTHORITIES.ADMIN]} component={ClassForm}/>

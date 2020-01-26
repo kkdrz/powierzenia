@@ -84,7 +84,7 @@
       },
       {
         "id": "bac33341-b09e-4a28-a19f-acd27c0a97da",
-        "name": "ROLE_ENTRUSTEE",
+        "name": "ROLE_TEACHER",
         "composite": false,
         "clientRole": false,
         "containerId": "jhipster",

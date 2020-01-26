@@ -10,7 +10,7 @@ export const AUTHORITIES = {
   ADMIN: 'ROLE_ADMIN',
   USER: 'ROLE_USER',
   ENTRUSTER: 'ROLE_ENTRUSTER',
-  ENTRUSTEE: 'ROLE_ENTRUSTEE'
+  TEACHER: 'ROLE_TEACHER'
 };
 
 export const messages = {

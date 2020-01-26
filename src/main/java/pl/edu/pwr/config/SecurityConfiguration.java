@@ -89,30 +89,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
 
             .antMatchers("/class-forms/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers(HttpMethod.GET, "/class-forms/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/class-forms/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.TEACHER)
 
             .antMatchers("/course-classes/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
-            .antMatchers(HttpMethod.GET, "/course-classes/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/course-classes/**").hasAuthority(AuthoritiesConstants.TEACHER)
 
             .antMatchers("/courses/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
-            .antMatchers(HttpMethod.GET, "/courses/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/courses/**").hasAuthority(AuthoritiesConstants.TEACHER)
 
             .antMatchers("/education-plans/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
-            .antMatchers(HttpMethod.GET, "/education-plans/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/education-plans/**").hasAuthority(AuthoritiesConstants.TEACHER)
 
             .antMatchers("/entrustment-plans/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
-            .antMatchers(HttpMethod.GET, "/entrustment-plans/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/entrustment-plans/**").hasAuthority(AuthoritiesConstants.TEACHER)
 
             .antMatchers("/entrustments/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTER)
-            .antMatchers(HttpMethod.GET, "/entrustments/**").hasAuthority(AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/entrustments/**").hasAuthority(AuthoritiesConstants.TEACHER)
 
             .antMatchers("/field-of-studies/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers(HttpMethod.GET, "/field-of-studies/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/field-of-studies/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.TEACHER)
 
             .antMatchers("/knowledge-areas/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers(HttpMethod.GET, "/knowledge-areas/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers(HttpMethod.GET, "/knowledge-areas/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.TEACHER)
 
-            .antMatchers("/teachers/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.ENTRUSTEE, AuthoritiesConstants.ENTRUSTEE)
+            .antMatchers("/teachers/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.TEACHER, AuthoritiesConstants.TEACHER)
 
             .and()
             .oauth2Login()
