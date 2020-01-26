@@ -7,7 +7,6 @@ import {Nav, Navbar} from 'reactstrap';
 import {Brand, Home} from 'app/shared/layout/header/header-components';
 import {AccountMenu, AdminMenu, EntitiesMenu} from 'app/shared/layout/menus';
 import Header from 'app/shared/layout/header/header';
-import {TeachersPreferences} from "app/modules/teachersPreferences/teachersPreferences";
 
 describe('Header', () => {
   let mountedWrapper;
@@ -89,13 +88,6 @@ describe('Header', () => {
     const nav = wrapper(userProps).find(Nav);
     expect(nav.find(AdminMenu).length).toEqual(0);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
-    const account = nav.find(AccountMenu);
-    expect(account.first().props().isAuthenticated).toEqual(true);
-  });
-
-  it('Renders a Header component in prod profile with logged in Teacher', () => {
-    const nav = wrapper(userProps).find(Nav);
-    expect(nav.find(TeachersPreferences).length).toEqual(1);
     const account = nav.find(AccountMenu);
     expect(account.first().props().isAuthenticated).toEqual(true);
   });
