@@ -66,6 +66,9 @@ export const Teacher = (props: ITeacherProps) => {
               <th className="hand" onClick={sort('id')}>
                 ID <FontAwesomeIcon icon="sort"/>
               </th>
+              <th className="hand" onClick={sort('externalUserId')}>
+                External User Id <FontAwesomeIcon icon="sort"/>
+              </th>
               <th className="hand" onClick={sort('firstName')}>
                 First Name <FontAwesomeIcon icon="sort"/>
               </th>
@@ -98,6 +101,7 @@ export const Teacher = (props: ITeacherProps) => {
                     {teacher.id}
                   </Button>
                 </td>
+                <td>{teacher.externalUserId}</td>
                 <td>{teacher.firstName}</td>
                 <td>{teacher.lastName}</td>
                 <td>{teacher.email}</td>

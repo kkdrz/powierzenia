@@ -1,11 +1,11 @@
-id;first_name;last_name;email;hour_limit;pensum;agreed_to_additional_pensum;type
-1;Manuel;Brekke;Johnny.Schroeder@yahoo.com;71466;90344;true;EXTERNAL_SPECIALIST
-2;Dagmar;Dooley;Emily78@hotmail.com;78510;14725;false;ACADEMIC_TEACHER
-3;Ila;Kautzer;Santos5@yahoo.com;18931;93119;true;DOCTORATE_STUDENT
-4;Talia;Daugherty;Carroll_Johnston12@hotmail.com;37503;53655;false;ACADEMIC_TEACHER
-5;Ashleigh;Cole;Clint95@gmail.com;11647;71634;true;DOCTORATE_STUDENT
-6;Carol;McKenzie;Jerad.Harber@gmail.com;71813;67094;false;ACADEMIC_TEACHER
-7;Luz;Gutkowski;Jakob_Mueller@yahoo.com;57563;31493;false;DOCTORATE_STUDENT
-8;Naomie;Crona;Sally.Gleason98@hotmail.com;10043;51583;false;ACADEMIC_TEACHER
-9;Leanna;Dach;Susie_Mohr@gmail.com;2016;94649;false;EXTERNAL_SPECIALIST
-10;Carroll;Rath;Zachary_Windler@hotmail.com;58240;54516;true;ACADEMIC_TEACHER
+id;external_user_id;first_name;last_name;email;hour_limit;pensum;agreed_to_additional_pensum;type
+1;Sleek Buckinghamshire;Lyda;Kuphal;Stewart20@hotmail.com;10932;33165;false;ACADEMIC_TEACHER
+2;neural;Caitlyn;Beahan;Riley_Pfannerstill@hotmail.com;9209;21434;true;EXTERNAL_SPECIALIST
+3;azure;Marie;Hahn;Frederique.Ondricka86@gmail.com;16244;42096;true;EXTERNAL_SPECIALIST
+4;Auto Loan Account;Ashleigh;Cole;Clint95@gmail.com;11647;71634;true;DOCTORATE_STUDENT
+5;Connecticut;Jerad;Harber;Hilma.Raynor22@yahoo.com;90417;42319;true;DOCTORATE_STUDENT
+6;Kansas architecture Buckinghamshire;Jannie;Robel;Paula67@gmail.com;9910;98021;false;DOCTORATE_STUDENT
+7;multi-byte;Ceasar;Champlin;Leon.Kovacek94@hotmail.com;46610;96486;false;EXTERNAL_SPECIALIST
+8;capacitor;Zachary;Windler;Kamron_McCullough@yahoo.com;32491;10463;true;EXTERNAL_SPECIALIST
+9;withdrawal;Verna;Frami;Mona15@yahoo.com;37787;98796;false;DOCTORATE_STUDENT
+10;Parkway Personal Loan Account Future;Miguel;Koss;Marjorie9@yahoo.com;81459;2756;false;ACADEMIC_TEACHER

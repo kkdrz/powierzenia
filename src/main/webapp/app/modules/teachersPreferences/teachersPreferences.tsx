@@ -1,14 +1,20 @@
 import './teachersPreferences.scss';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {connect} from 'react-redux';
 import {Col, Row} from 'reactstrap';
+import {getEntity} from "app/entities/teacher/teacher.reducer";
 
-export type ITeachersPreferencesProp = StateProps;
+export interface ITeachersPreferencesProp extends StateProps, DispatchProps {
+}
 
 export const TeachersPreferences = (props: ITeachersPreferencesProp) => {
   const {account} = props;
+
+  useEffect(() => {
+    props.getEntity(account.id);
+  }, []);
 
   return (
     <Row>
@@ -21,9 +27,13 @@ export const TeachersPreferences = (props: ITeachersPreferencesProp) => {
 
 const mapStateToProps = storeState => ({
   account: storeState.authentication.account,
+  teacherEntity: storeState.teacher.entity,
   isAuthenticated: storeState.authentication.isAuthenticated
 });
 
-type StateProps = ReturnType<typeof mapStateToProps>;
+const mapDispatchToProps = {getEntity};
 
-export default connect(mapStateToProps)(TeachersPreferences);
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeachersPreferences);

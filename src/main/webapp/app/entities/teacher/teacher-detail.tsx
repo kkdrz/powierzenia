@@ -24,6 +24,10 @@ export const TeacherDetail = (props: ITeacherDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
+            <span id="externalUserId">External User Id</span>
+          </dt>
+          <dd>{teacherEntity.externalUserId}</dd>
+          <dt>
             <span id="firstName">First Name</span>
           </dt>
           <dd>{teacherEntity.firstName}</dd>

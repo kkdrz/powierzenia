@@ -21,6 +21,9 @@ public class Teacher implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "external_user_id")
+    private String externalUserId;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -73,12 +76,21 @@ public class Teacher implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getExternalUserId() {
+        return externalUserId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setExternalUserId(String externalUserId) {
+        this.externalUserId = externalUserId;
+    }
+
+    public Teacher externalUserId(String externalUserId) {
+        this.externalUserId = externalUserId;
+        return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public Teacher firstName(String firstName) {
@@ -86,12 +98,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getLastName() {
+        return lastName;
     }
 
     public Teacher lastName(String lastName) {
@@ -99,12 +111,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public String getEmail() {
-        return email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getEmail() {
+        return email;
     }
 
     public Teacher email(String email) {
@@ -112,12 +124,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Integer getHourLimit() {
-        return hourLimit;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setHourLimit(Integer hourLimit) {
-        this.hourLimit = hourLimit;
+    public Integer getHourLimit() {
+        return hourLimit;
     }
 
     public Teacher hourLimit(Integer hourLimit) {
@@ -125,17 +137,21 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Integer getPensum() {
-        return pensum;
+    public void setHourLimit(Integer hourLimit) {
+        this.hourLimit = hourLimit;
     }
 
-    public void setPensum(Integer pensum) {
-        this.pensum = pensum;
+    public Integer getPensum() {
+        return pensum;
     }
 
     public Teacher pensum(Integer pensum) {
         this.pensum = pensum;
         return this;
+    }
+
+    public void setPensum(Integer pensum) {
+        this.pensum = pensum;
     }
 
     public Boolean isAgreedToAdditionalPensum() {
@@ -155,21 +171,17 @@ public class Teacher implements Serializable {
         return type;
     }
 
-    public void setType(TeacherType type) {
-        this.type = type;
-    }
-
     public Teacher type(TeacherType type) {
         this.type = type;
         return this;
     }
 
-    public Set<Entrustment> getEntrustments() {
-        return entrustments;
+    public void setType(TeacherType type) {
+        this.type = type;
     }
 
-    public void setEntrustments(Set<Entrustment> entrustments) {
-        this.entrustments = entrustments;
+    public Set<Entrustment> getEntrustments() {
+        return entrustments;
     }
 
     public Teacher entrustments(Set<Entrustment> entrustments) {
@@ -189,12 +201,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<ClassForm> getAllowedClassForms() {
-        return allowedClassForms;
+    public void setEntrustments(Set<Entrustment> entrustments) {
+        this.entrustments = entrustments;
     }
 
-    public void setAllowedClassForms(Set<ClassForm> classForms) {
-        this.allowedClassForms = classForms;
+    public Set<ClassForm> getAllowedClassForms() {
+        return allowedClassForms;
     }
 
     public Teacher allowedClassForms(Set<ClassForm> classForms) {
@@ -214,12 +226,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<KnowledgeArea> getKnowledgeAreas() {
-        return knowledgeAreas;
+    public void setAllowedClassForms(Set<ClassForm> classForms) {
+        this.allowedClassForms = classForms;
     }
 
-    public void setKnowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
-        this.knowledgeAreas = knowledgeAreas;
+    public Set<KnowledgeArea> getKnowledgeAreas() {
+        return knowledgeAreas;
     }
 
     public Teacher knowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
@@ -239,12 +251,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<Course> getPreferedCourses() {
-        return preferedCourses;
+    public void setKnowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
+        this.knowledgeAreas = knowledgeAreas;
     }
 
-    public void setPreferedCourses(Set<Course> courses) {
-        this.preferedCourses = courses;
+    public Set<Course> getPreferedCourses() {
+        return preferedCourses;
     }
 
     public Teacher preferedCourses(Set<Course> courses) {
@@ -262,6 +274,10 @@ public class Teacher implements Serializable {
         this.preferedCourses.remove(course);
         course.getTeachersThatPreferThisCourses().remove(this);
         return this;
+    }
+
+    public void setPreferedCourses(Set<Course> courses) {
+        this.preferedCourses = courses;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -285,6 +301,7 @@ public class Teacher implements Serializable {
     public String toString() {
         return "Teacher{" +
             "id=" + getId() +
+            ", externalUserId='" + getExternalUserId() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +

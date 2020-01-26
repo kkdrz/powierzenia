@@ -41,6 +41,9 @@ import static pl.edu.pwr.web.rest.TestUtil.createFormattingConversionService;
 @SpringBootTest(classes = {PowierzeniaApp.class, TestSecurityConfiguration.class})
 public class TeacherResourceIT {
 
+    private static final String DEFAULT_EXTERNAL_USER_ID = "AAAAAAAAAA";
+    private static final String UPDATED_EXTERNAL_USER_ID = "BBBBBBBBBB";
+
     private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
 
@@ -98,12 +101,13 @@ public class TeacherResourceIT {
 
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
     public static Teacher createEntity(EntityManager em) {
         Teacher teacher = new Teacher()
+            .externalUserId(DEFAULT_EXTERNAL_USER_ID)
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .email(DEFAULT_EMAIL)
@@ -116,12 +120,13 @@ public class TeacherResourceIT {
 
     /**
      * Create an updated entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
     public static Teacher createUpdatedEntity(EntityManager em) {
         Teacher teacher = new Teacher()
+            .externalUserId(UPDATED_EXTERNAL_USER_ID)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
@@ -165,6 +170,7 @@ public class TeacherResourceIT {
         List<Teacher> teacherList = teacherRepository.findAll();
         assertThat(teacherList).hasSize(databaseSizeBeforeCreate + 1);
         Teacher testTeacher = teacherList.get(teacherList.size() - 1);
+        assertThat(testTeacher.getExternalUserId()).isEqualTo(DEFAULT_EXTERNAL_USER_ID);
         assertThat(testTeacher.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testTeacher.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testTeacher.getEmail()).isEqualTo(DEFAULT_EMAIL);
@@ -206,6 +212,7 @@ public class TeacherResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(teacher.getId().intValue())))
+            .andExpect(jsonPath("$.[*].externalUserId").value(hasItem(DEFAULT_EXTERNAL_USER_ID)))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
@@ -259,6 +266,7 @@ public class TeacherResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(teacher.getId().intValue()))
+            .andExpect(jsonPath("$.externalUserId").value(DEFAULT_EXTERNAL_USER_ID))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
@@ -289,6 +297,7 @@ public class TeacherResourceIT {
         // Disconnect from session so that the updates on updatedTeacher are not directly saved in db
         em.detach(updatedTeacher);
         updatedTeacher
+            .externalUserId(UPDATED_EXTERNAL_USER_ID)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
@@ -307,6 +316,7 @@ public class TeacherResourceIT {
         List<Teacher> teacherList = teacherRepository.findAll();
         assertThat(teacherList).hasSize(databaseSizeBeforeUpdate);
         Teacher testTeacher = teacherList.get(teacherList.size() - 1);
+        assertThat(testTeacher.getExternalUserId()).isEqualTo(UPDATED_EXTERNAL_USER_ID);
         assertThat(testTeacher.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testTeacher.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testTeacher.getEmail()).isEqualTo(UPDATED_EMAIL);

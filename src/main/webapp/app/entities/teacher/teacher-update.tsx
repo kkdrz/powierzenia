@@ -82,6 +82,12 @@ export const TeacherUpdate = (props: ITeacherUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
+                <Label id="externalUserIdLabel" for="teacher-externalUserId">
+                  External User Id
+                </Label>
+                <AvField id="teacher-externalUserId" type="text" name="externalUserId"/>
+              </AvGroup>
+              <AvGroup>
                 <Label id="firstNameLabel" for="teacher-firstName">
                   First Name
                 </Label>

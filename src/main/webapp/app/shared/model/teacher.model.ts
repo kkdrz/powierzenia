@@ -6,6 +6,7 @@ import { TeacherType } from 'app/shared/model/enumerations/teacher-type.model';
 
 export interface ITeacher {
   id?: number;
+  externalUserId?: string;
   firstName?: string;
   lastName?: string;
   email?: string;

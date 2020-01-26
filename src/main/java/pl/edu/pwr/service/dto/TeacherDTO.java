@@ -14,6 +14,8 @@ public class TeacherDTO implements Serializable {
 
     private Long id;
 
+    private String externalUserId;
+
     private String firstName;
 
     private String lastName;
@@ -41,6 +43,14 @@ public class TeacherDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getExternalUserId() {
+        return externalUserId;
+    }
+
+    public void setExternalUserId(String externalUserId) {
+        this.externalUserId = externalUserId;
     }
 
     public String getFirstName() {
@@ -148,6 +158,7 @@ public class TeacherDTO implements Serializable {
     public String toString() {
         return "TeacherDTO{" +
             "id=" + getId() +
+            ", externalUserId='" + getExternalUserId() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
