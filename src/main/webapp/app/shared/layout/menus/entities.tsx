@@ -2,7 +2,7 @@ import React from 'react';
 import MenuItem from 'app/shared/layout/menus/menu-item';
 import {NavDropdown} from './menu-components';
 
-export const EntitiesMenu = props => (
+export const EntitiesMenu = () => (
   <NavDropdown icon="th-list" name="Entities" id="entity-menu">
     <MenuItem icon="asterisk" to="/teacher">
       Teacher
@@ -22,7 +22,7 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/entrustment-plan">
       Entrustment Plan
     </MenuItem>
-    <MenuItem icon="asterisk" to="/field-of-study">
+    <MenuItem icon="asterisk" to="/field-of-study" >
       Field Of Study
     </MenuItem>
     <MenuItem icon="asterisk" to="/knowledge-area">

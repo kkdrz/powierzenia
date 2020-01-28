@@ -30,6 +30,8 @@ export const Home = (props: IHomeProp) => {
               , you can try the default accounts:
               <br/>- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
               <br/>- User (login=&quot;user&quot; and password=&quot;user&quot;).
+              <br/>- Teacher (login=&quot;teacher&quot; and password=&quot;teacher&quot;).
+              <br/>- Entruster (login=&quot;entruster&quot; and password=&quot;entruster&quot;).
             </Alert>
           </div>
         )}
