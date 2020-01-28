@@ -28,11 +28,14 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class TeacherResource {
 
-    private static final String ENTITY_NAME = "teacher";
     private final Logger log = LoggerFactory.getLogger(TeacherResource.class);
-    private final TeacherService teacherService;
+
+    private static final String ENTITY_NAME = "teacher";
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    private final TeacherService teacherService;
 
     public TeacherResource(TeacherService teacherService) {
         this.teacherService = teacherService;

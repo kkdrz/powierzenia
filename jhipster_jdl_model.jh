@@ -1,12 +1,12 @@
 entity Teacher {
-	externalUserId String,
-	firstName String,
-	lastName String,
-	email String,
     hourLimit Integer,
     pensum Integer,
     agreedToAdditionalPensum Boolean,
     type TeacherType
+}
+
+relationship OneToOne {
+	Teacher{user} to User
 }
 
 enum TeacherType {

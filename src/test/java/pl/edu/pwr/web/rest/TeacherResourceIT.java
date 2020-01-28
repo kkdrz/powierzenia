@@ -34,24 +34,11 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static pl.edu.pwr.web.rest.TestUtil.createFormattingConversionService;
-
 /**
  * Integration tests for the {@link TeacherResource} REST controller.
  */
 @SpringBootTest(classes = {PowierzeniaApp.class, TestSecurityConfiguration.class})
 public class TeacherResourceIT {
-
-    private static final String DEFAULT_EXTERNAL_USER_ID = "AAAAAAAAAA";
-    private static final String UPDATED_EXTERNAL_USER_ID = "BBBBBBBBBB";
-
-    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_HOUR_LIMIT = 1;
     private static final Integer UPDATED_HOUR_LIMIT = 2;
@@ -99,44 +86,6 @@ public class TeacherResourceIT {
 
     private Teacher teacher;
 
-    /**
-     * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
-    public static Teacher createEntity(EntityManager em) {
-        Teacher teacher = new Teacher()
-            .externalUserId(DEFAULT_EXTERNAL_USER_ID)
-            .firstName(DEFAULT_FIRST_NAME)
-            .lastName(DEFAULT_LAST_NAME)
-            .email(DEFAULT_EMAIL)
-            .hourLimit(DEFAULT_HOUR_LIMIT)
-            .pensum(DEFAULT_PENSUM)
-            .agreedToAdditionalPensum(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM)
-            .type(DEFAULT_TYPE);
-        return teacher;
-    }
-
-    /**
-     * Create an updated entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
-    public static Teacher createUpdatedEntity(EntityManager em) {
-        Teacher teacher = new Teacher()
-            .externalUserId(UPDATED_EXTERNAL_USER_ID)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .hourLimit(UPDATED_HOUR_LIMIT)
-            .pensum(UPDATED_PENSUM)
-            .agreedToAdditionalPensum(UPDATED_AGREED_TO_ADDITIONAL_PENSUM)
-            .type(UPDATED_TYPE);
-        return teacher;
-    }
-
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -147,6 +96,35 @@ public class TeacherResourceIT {
             .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter)
             .setValidator(validator).build();
+    }
+
+    /**
+     * Create an entity for this test.
+     * <p>
+     * This is a static method, as tests for other entities might also need it,
+     * if they test an entity which requires the current entity.
+     */
+    public static Teacher createEntity(EntityManager em) {
+        Teacher teacher = new Teacher()
+            .hourLimit(DEFAULT_HOUR_LIMIT)
+            .pensum(DEFAULT_PENSUM)
+            .agreedToAdditionalPensum(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM)
+            .type(DEFAULT_TYPE);
+        return teacher;
+    }
+    /**
+     * Create an updated entity for this test.
+     *
+     * This is a static method, as tests for other entities might also need it,
+     * if they test an entity which requires the current entity.
+     */
+    public static Teacher createUpdatedEntity(EntityManager em) {
+        Teacher teacher = new Teacher()
+            .hourLimit(UPDATED_HOUR_LIMIT)
+            .pensum(UPDATED_PENSUM)
+            .agreedToAdditionalPensum(UPDATED_AGREED_TO_ADDITIONAL_PENSUM)
+            .type(UPDATED_TYPE);
+        return teacher;
     }
 
     @BeforeEach
@@ -170,10 +148,6 @@ public class TeacherResourceIT {
         List<Teacher> teacherList = teacherRepository.findAll();
         assertThat(teacherList).hasSize(databaseSizeBeforeCreate + 1);
         Teacher testTeacher = teacherList.get(teacherList.size() - 1);
-        assertThat(testTeacher.getExternalUserId()).isEqualTo(DEFAULT_EXTERNAL_USER_ID);
-        assertThat(testTeacher.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
-        assertThat(testTeacher.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testTeacher.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testTeacher.getHourLimit()).isEqualTo(DEFAULT_HOUR_LIMIT);
         assertThat(testTeacher.getPensum()).isEqualTo(DEFAULT_PENSUM);
         assertThat(testTeacher.isAgreedToAdditionalPensum()).isEqualTo(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM);
@@ -212,10 +186,6 @@ public class TeacherResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(teacher.getId().intValue())))
-            .andExpect(jsonPath("$.[*].externalUserId").value(hasItem(DEFAULT_EXTERNAL_USER_ID)))
-            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].hourLimit").value(hasItem(DEFAULT_HOUR_LIMIT)))
             .andExpect(jsonPath("$.[*].pensum").value(hasItem(DEFAULT_PENSUM)))
             .andExpect(jsonPath("$.[*].agreedToAdditionalPensum").value(hasItem(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM.booleanValue())))
@@ -266,10 +236,6 @@ public class TeacherResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(teacher.getId().intValue()))
-            .andExpect(jsonPath("$.externalUserId").value(DEFAULT_EXTERNAL_USER_ID))
-            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.hourLimit").value(DEFAULT_HOUR_LIMIT))
             .andExpect(jsonPath("$.pensum").value(DEFAULT_PENSUM))
             .andExpect(jsonPath("$.agreedToAdditionalPensum").value(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM.booleanValue()))
@@ -297,10 +263,6 @@ public class TeacherResourceIT {
         // Disconnect from session so that the updates on updatedTeacher are not directly saved in db
         em.detach(updatedTeacher);
         updatedTeacher
-            .externalUserId(UPDATED_EXTERNAL_USER_ID)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
             .hourLimit(UPDATED_HOUR_LIMIT)
             .pensum(UPDATED_PENSUM)
             .agreedToAdditionalPensum(UPDATED_AGREED_TO_ADDITIONAL_PENSUM)
@@ -316,10 +278,6 @@ public class TeacherResourceIT {
         List<Teacher> teacherList = teacherRepository.findAll();
         assertThat(teacherList).hasSize(databaseSizeBeforeUpdate);
         Teacher testTeacher = teacherList.get(teacherList.size() - 1);
-        assertThat(testTeacher.getExternalUserId()).isEqualTo(UPDATED_EXTERNAL_USER_ID);
-        assertThat(testTeacher.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testTeacher.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testTeacher.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testTeacher.getHourLimit()).isEqualTo(UPDATED_HOUR_LIMIT);
         assertThat(testTeacher.getPensum()).isEqualTo(UPDATED_PENSUM);
         assertThat(testTeacher.isAgreedToAdditionalPensum()).isEqualTo(UPDATED_AGREED_TO_ADDITIONAL_PENSUM);

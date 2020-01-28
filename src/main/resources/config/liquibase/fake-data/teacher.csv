@@ -1,11 +1,6 @@
-id;external_user_id;first_name;last_name;email;hour_limit;pensum;agreed_to_additional_pensum;type
-1;Sleek Buckinghamshire;Lyda;Kuphal;Stewart20@hotmail.com;10932;33165;false;ACADEMIC_TEACHER
-2;neural;Caitlyn;Beahan;Riley_Pfannerstill@hotmail.com;9209;21434;true;EXTERNAL_SPECIALIST
-3;azure;Marie;Hahn;Frederique.Ondricka86@gmail.com;16244;42096;true;EXTERNAL_SPECIALIST
-4;Auto Loan Account;Ashleigh;Cole;Clint95@gmail.com;11647;71634;true;DOCTORATE_STUDENT
-5;Connecticut;Jerad;Harber;Hilma.Raynor22@yahoo.com;90417;42319;true;DOCTORATE_STUDENT
-6;Kansas architecture Buckinghamshire;Jannie;Robel;Paula67@gmail.com;9910;98021;false;DOCTORATE_STUDENT
-7;multi-byte;Ceasar;Champlin;Leon.Kovacek94@hotmail.com;46610;96486;false;EXTERNAL_SPECIALIST
-8;capacitor;Zachary;Windler;Kamron_McCullough@yahoo.com;32491;10463;true;EXTERNAL_SPECIALIST
-9;withdrawal;Verna;Frami;Mona15@yahoo.com;37787;98796;false;DOCTORATE_STUDENT
-10;Parkway Personal Loan Account Future;Miguel;Koss;Marjorie9@yahoo.com;81459;2756;false;ACADEMIC_TEACHER
+id;hour_limit;pensum;agreed_to_additional_pensum;type;user_id
+1;67507;31832;true;EXTERNAL_SPECIALIST;c5tu4e6f-j332-4c3b-7654-rty65cd5ertd
+2;4785;86602;true;DOCTORATE_STUDENT;c4af4e2f-b432-4c3b-8405-dkrje846fyeu
+3;64655;86975;false;EXTERNAL_SPECIALIST;c4af4e2f-b432-4c3b-8405-mmdjur74635w
+4;2689;36705;true;EXTERNAL_SPECIALIST;c4af4e2f-b432-4c3b-8405-qpqpqowieusd
+5;37503;53655;false;ACADEMIC_TEACHER;c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe

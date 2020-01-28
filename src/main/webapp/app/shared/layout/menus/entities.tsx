@@ -22,7 +22,7 @@ export const EntitiesMenu = () => (
     <MenuItem icon="asterisk" to="/entrustment-plan">
       Entrustment Plan
     </MenuItem>
-    <MenuItem icon="asterisk" to="/field-of-study" >
+    <MenuItem icon="asterisk" to="/field-of-study">
       Field Of Study
     </MenuItem>
     <MenuItem icon="asterisk" to="/knowledge-area">
@@ -30,6 +30,9 @@ export const EntitiesMenu = () => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/class-form">
       Class Form
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/teacher">
+      Teacher
     </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>

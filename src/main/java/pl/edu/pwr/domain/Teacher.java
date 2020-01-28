@@ -21,18 +21,6 @@ public class Teacher implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "external_user_id")
-    private String externalUserId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "hour_limit")
     private Integer hourLimit;
 
@@ -45,6 +33,10 @@ public class Teacher implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private TeacherType type;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
 
     @OneToMany(mappedBy = "teacher")
     private Set<Entrustment> entrustments = new HashSet<>();
@@ -74,58 +66,6 @@ public class Teacher implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getExternalUserId() {
-        return externalUserId;
-    }
-
-    public void setExternalUserId(String externalUserId) {
-        this.externalUserId = externalUserId;
-    }
-
-    public Teacher externalUserId(String externalUserId) {
-        this.externalUserId = externalUserId;
-        return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public Teacher firstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Teacher lastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Teacher email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Integer getHourLimit() {
@@ -178,6 +118,19 @@ public class Teacher implements Serializable {
 
     public void setType(TeacherType type) {
         this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Teacher user(User user) {
+        this.user = user;
+        return this;
     }
 
     public Set<Entrustment> getEntrustments() {
@@ -301,10 +254,6 @@ public class Teacher implements Serializable {
     public String toString() {
         return "Teacher{" +
             "id=" + getId() +
-            ", externalUserId='" + getExternalUserId() + "'" +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", hourLimit=" + getHourLimit() +
             ", pensum=" + getPensum() +
             ", agreedToAdditionalPensum='" + isAgreedToAdditionalPensum() + "'" +

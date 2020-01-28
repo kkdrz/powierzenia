@@ -8,10 +8,13 @@ import pl.edu.pwr.service.dto.TeacherDTO;
 /**
  * Mapper for the entity {@link Teacher} and its DTO {@link TeacherDTO}.
  */
-@Mapper(componentModel = "spring", uses = {ClassFormMapper.class, KnowledgeAreaMapper.class, CourseMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, ClassFormMapper.class, KnowledgeAreaMapper.class, CourseMapper.class})
 public interface TeacherMapper extends EntityMapper<TeacherDTO, Teacher> {
 
+    @Mapping(source = "user.id", target = "userId")
+    TeacherDTO toDto(Teacher teacher);
 
+    @Mapping(source = "userId", target = "user")
     @Mapping(target = "entrustments", ignore = true)
     @Mapping(target = "removeEntrustments", ignore = true)
     @Mapping(target = "removeAllowedClassForms", ignore = true)

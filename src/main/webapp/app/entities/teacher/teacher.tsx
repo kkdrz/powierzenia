@@ -66,18 +66,6 @@ export const Teacher = (props: ITeacherProps) => {
               <th className="hand" onClick={sort('id')}>
                 ID <FontAwesomeIcon icon="sort"/>
               </th>
-              <th className="hand" onClick={sort('externalUserId')}>
-                External User Id <FontAwesomeIcon icon="sort"/>
-              </th>
-              <th className="hand" onClick={sort('firstName')}>
-                First Name <FontAwesomeIcon icon="sort"/>
-              </th>
-              <th className="hand" onClick={sort('lastName')}>
-                Last Name <FontAwesomeIcon icon="sort"/>
-              </th>
-              <th className="hand" onClick={sort('email')}>
-                Email <FontAwesomeIcon icon="sort"/>
-              </th>
               <th className="hand" onClick={sort('hourLimit')}>
                 Hour Limit <FontAwesomeIcon icon="sort"/>
               </th>
@@ -90,6 +78,9 @@ export const Teacher = (props: ITeacherProps) => {
               <th className="hand" onClick={sort('type')}>
                 Type <FontAwesomeIcon icon="sort"/>
               </th>
+              <th>
+                User <FontAwesomeIcon icon="sort"/>
+              </th>
               <th/>
             </tr>
             </thead>
@@ -101,14 +92,11 @@ export const Teacher = (props: ITeacherProps) => {
                     {teacher.id}
                   </Button>
                 </td>
-                <td>{teacher.externalUserId}</td>
-                <td>{teacher.firstName}</td>
-                <td>{teacher.lastName}</td>
-                <td>{teacher.email}</td>
                 <td>{teacher.hourLimit}</td>
                 <td>{teacher.pensum}</td>
                 <td>{teacher.agreedToAdditionalPensum ? 'true' : 'false'}</td>
                 <td>{teacher.type}</td>
+                <td>{teacher.userId ? teacher.userId : ''}</td>
                 <td className="text-right">
                   <div className="btn-group flex-btn-group-container">
                     <Button tag={Link} to={`${match.url}/${teacher.id}`} color="info" size="sm">
