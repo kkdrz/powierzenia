@@ -67,24 +67,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <loadData
-            file="config/liquibase/data/user.csv"
-            separator=";"
-            tableName="jhi_user">
-            <column name="id" type="numeric"/>
-            <column name="activated" type="boolean"/>
-            <column name="created_date" type="timestamp"/>
-        </loadData>
         <dropDefaultValue tableName="jhi_user" columnName="created_date" columnDataType="datetime"/>
         <loadData
             file="config/liquibase/data/authority.csv"
             separator=";"
             tableName="jhi_authority"/>
 
-        <loadData
-            file="config/liquibase/data/user_authority.csv"
-            separator=";"
-            tableName="jhi_user_authority"/>
         <createTable tableName="jhi_persistent_audit_event">
             <column name="event_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>

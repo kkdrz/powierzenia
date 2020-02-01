@@ -24,18 +24,6 @@ export const TeacherDetail = (props: ITeacherDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="firstName">First Name</span>
-          </dt>
-          <dd>{teacherEntity.firstName}</dd>
-          <dt>
-            <span id="lastName">Last Name</span>
-          </dt>
-          <dd>{teacherEntity.lastName}</dd>
-          <dt>
-            <span id="email">Email</span>
-          </dt>
-          <dd>{teacherEntity.email}</dd>
-          <dt>
             <span id="hourLimit">Hour Limit</span>
           </dt>
           <dd>{teacherEntity.hourLimit}</dd>
@@ -51,6 +39,8 @@ export const TeacherDetail = (props: ITeacherDetailProps) => {
             <span id="type">Type</span>
           </dt>
           <dd>{teacherEntity.type}</dd>
+          <dt>User</dt>
+          <dd>{teacherEntity.userId ? teacherEntity.userId : ''}</dd>
           <dt>Allowed Class Forms</dt>
           <dd>
             {teacherEntity.allowedClassForms

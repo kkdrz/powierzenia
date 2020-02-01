@@ -6,13 +6,11 @@ import { TeacherType } from 'app/shared/model/enumerations/teacher-type.model';
 
 export interface ITeacher {
   id?: number;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
   hourLimit?: number;
   pensum?: number;
   agreedToAdditionalPensum?: boolean;
   type?: TeacherType;
+  userId?: number;
   entrustments?: IEntrustment[];
   allowedClassForms?: IClassForm[];
   knowledgeAreas?: IKnowledgeArea[];

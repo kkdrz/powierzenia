@@ -2,18 +2,6 @@
   "name": "Teacher",
   "fields": [
     {
-      "fieldName": "firstName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "lastName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "email",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "hourLimit",
       "fieldType": "Integer"
     },
@@ -32,6 +20,14 @@
     }
   ],
   "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "user",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "entrustment",

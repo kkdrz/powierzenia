@@ -21,15 +21,6 @@ public class Teacher implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "hour_limit")
     private Integer hourLimit;
 
@@ -42,6 +33,10 @@ public class Teacher implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private TeacherType type;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
 
     @OneToMany(mappedBy = "teacher")
     private Set<Entrustment> entrustments = new HashSet<>();
@@ -73,51 +68,8 @@ public class Teacher implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Teacher firstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Teacher lastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Teacher email(String email) {
-        this.email = email;
-        return this;
-    }
-
     public Integer getHourLimit() {
         return hourLimit;
-    }
-
-    public void setHourLimit(Integer hourLimit) {
-        this.hourLimit = hourLimit;
     }
 
     public Teacher hourLimit(Integer hourLimit) {
@@ -125,17 +77,21 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Integer getPensum() {
-        return pensum;
+    public void setHourLimit(Integer hourLimit) {
+        this.hourLimit = hourLimit;
     }
 
-    public void setPensum(Integer pensum) {
-        this.pensum = pensum;
+    public Integer getPensum() {
+        return pensum;
     }
 
     public Teacher pensum(Integer pensum) {
         this.pensum = pensum;
         return this;
+    }
+
+    public void setPensum(Integer pensum) {
+        this.pensum = pensum;
     }
 
     public Boolean isAgreedToAdditionalPensum() {
@@ -155,21 +111,30 @@ public class Teacher implements Serializable {
         return type;
     }
 
-    public void setType(TeacherType type) {
-        this.type = type;
-    }
-
     public Teacher type(TeacherType type) {
         this.type = type;
         return this;
     }
 
-    public Set<Entrustment> getEntrustments() {
-        return entrustments;
+    public void setType(TeacherType type) {
+        this.type = type;
     }
 
-    public void setEntrustments(Set<Entrustment> entrustments) {
-        this.entrustments = entrustments;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Teacher user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public Set<Entrustment> getEntrustments() {
+        return entrustments;
     }
 
     public Teacher entrustments(Set<Entrustment> entrustments) {
@@ -189,12 +154,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<ClassForm> getAllowedClassForms() {
-        return allowedClassForms;
+    public void setEntrustments(Set<Entrustment> entrustments) {
+        this.entrustments = entrustments;
     }
 
-    public void setAllowedClassForms(Set<ClassForm> classForms) {
-        this.allowedClassForms = classForms;
+    public Set<ClassForm> getAllowedClassForms() {
+        return allowedClassForms;
     }
 
     public Teacher allowedClassForms(Set<ClassForm> classForms) {
@@ -214,12 +179,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<KnowledgeArea> getKnowledgeAreas() {
-        return knowledgeAreas;
+    public void setAllowedClassForms(Set<ClassForm> classForms) {
+        this.allowedClassForms = classForms;
     }
 
-    public void setKnowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
-        this.knowledgeAreas = knowledgeAreas;
+    public Set<KnowledgeArea> getKnowledgeAreas() {
+        return knowledgeAreas;
     }
 
     public Teacher knowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
@@ -239,12 +204,12 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Set<Course> getPreferedCourses() {
-        return preferedCourses;
+    public void setKnowledgeAreas(Set<KnowledgeArea> knowledgeAreas) {
+        this.knowledgeAreas = knowledgeAreas;
     }
 
-    public void setPreferedCourses(Set<Course> courses) {
-        this.preferedCourses = courses;
+    public Set<Course> getPreferedCourses() {
+        return preferedCourses;
     }
 
     public Teacher preferedCourses(Set<Course> courses) {
@@ -262,6 +227,10 @@ public class Teacher implements Serializable {
         this.preferedCourses.remove(course);
         course.getTeachersThatPreferThisCourses().remove(this);
         return this;
+    }
+
+    public void setPreferedCourses(Set<Course> courses) {
+        this.preferedCourses = courses;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -285,9 +254,6 @@ public class Teacher implements Serializable {
     public String toString() {
         return "Teacher{" +
             "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", hourLimit=" + getHourLimit() +
             ", pensum=" + getPensum() +
             ", agreedToAdditionalPensum='" + isAgreedToAdditionalPensum() + "'" +

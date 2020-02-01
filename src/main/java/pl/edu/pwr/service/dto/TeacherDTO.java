@@ -14,12 +14,6 @@ public class TeacherDTO implements Serializable {
 
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
-    private String email;
-
     private Integer hourLimit;
 
     private Integer pensum;
@@ -28,6 +22,8 @@ public class TeacherDTO implements Serializable {
 
     private TeacherType type;
 
+
+    private String userId;
 
     private Set<ClassFormDTO> allowedClassForms = new HashSet<>();
 
@@ -41,30 +37,6 @@ public class TeacherDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Integer getHourLimit() {
@@ -97,6 +69,14 @@ public class TeacherDTO implements Serializable {
 
     public void setType(TeacherType type) {
         this.type = type;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Set<ClassFormDTO> getAllowedClassForms() {
@@ -148,13 +128,11 @@ public class TeacherDTO implements Serializable {
     public String toString() {
         return "TeacherDTO{" +
             "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", hourLimit=" + getHourLimit() +
             ", pensum=" + getPensum() +
             ", agreedToAdditionalPensum='" + isAgreedToAdditionalPensum() + "'" +
             ", type='" + getType() + "'" +
+            ", userId='" + getUserId() + "'" +
             "}";
     }
 }

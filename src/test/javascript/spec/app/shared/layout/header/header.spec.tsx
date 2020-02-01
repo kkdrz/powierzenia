@@ -14,6 +14,7 @@ describe('Header', () => {
   const devProps = {
     isAuthenticated: true,
     isAdmin: true,
+    isTeacher: true,
     ribbonEnv: 'dev',
     isInProduction: false,
     isSwaggerEnabled: true
