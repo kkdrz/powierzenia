@@ -12,7 +12,8 @@ export const ACTION_TYPES = {
   CREATE_TEACHER: 'teacher/CREATE_TEACHER',
   UPDATE_TEACHER: 'teacher/UPDATE_TEACHER',
   DELETE_TEACHER: 'teacher/DELETE_TEACHER',
-  RESET: 'teacher/RESET'
+  RESET: 'teacher/RESET',
+  FETCH_TEACHER_BY_USER_ID: 'teacher/FETCH_TEACHER_BY_USER_ID'
 };
 
 const initialState = {
@@ -32,6 +33,7 @@ export type TeacherState = Readonly<typeof initialState>;
 export default (state: TeacherState = initialState, action): TeacherState => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.FETCH_TEACHER_LIST):
+    case REQUEST(ACTION_TYPES.FETCH_TEACHER_BY_USER_ID):
     case REQUEST(ACTION_TYPES.FETCH_TEACHER):
       return {
         ...state,
@@ -49,6 +51,7 @@ export default (state: TeacherState = initialState, action): TeacherState => {
         updating: true
       };
     case FAILURE(ACTION_TYPES.FETCH_TEACHER_LIST):
+    case FAILURE(ACTION_TYPES.FETCH_TEACHER_BY_USER_ID):
     case FAILURE(ACTION_TYPES.FETCH_TEACHER):
     case FAILURE(ACTION_TYPES.CREATE_TEACHER):
     case FAILURE(ACTION_TYPES.UPDATE_TEACHER):
@@ -66,6 +69,12 @@ export default (state: TeacherState = initialState, action): TeacherState => {
         loading: false,
         entities: action.payload.data,
         totalItems: parseInt(action.payload.headers['x-total-count'], 10)
+      };
+    case SUCCESS(ACTION_TYPES.FETCH_TEACHER_BY_USER_ID):
+      return {
+        ...state,
+        loading: false,
+        entity: action.payload.data[0]
       };
     case SUCCESS(ACTION_TYPES.FETCH_TEACHER):
       return {
@@ -113,6 +122,14 @@ export const getEntity: ICrudGetAction<ITeacher> = id => {
   const requestUrl = `${apiUrl}/${id}`;
   return {
     type: ACTION_TYPES.FETCH_TEACHER,
+    payload: axios.get<ITeacher>(requestUrl)
+  };
+};
+
+export const getEntityByUserId: ICrudGetAction<ITeacher> = id => {
+  const requestUrl = `${apiUrl}?userId=${id}`;
+  return {
+    type: ACTION_TYPES.FETCH_TEACHER_BY_USER_ID,
     payload: axios.get<ITeacher>(requestUrl)
   };
 };

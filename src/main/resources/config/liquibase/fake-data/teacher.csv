@@ -2,5 +2,4 @@ id;hour_limit;pensum;agreed_to_additional_pensum;type;user_id
 1;67507;31832;true;EXTERNAL_SPECIALIST;c5tu4e6f-j332-4c3b-7654-rty65cd5ertd
 2;4785;86602;true;DOCTORATE_STUDENT;c4af4e2f-b432-4c3b-8405-dkrje846fyeu
 3;64655;86975;false;EXTERNAL_SPECIALIST;c4af4e2f-b432-4c3b-8405-mmdjur74635w
-4;2689;36705;true;EXTERNAL_SPECIALIST;c4af4e2f-b432-4c3b-8405-qpqpqowieusd
-5;37503;53655;false;ACADEMIC_TEACHER;c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe
+4;37503;53655;false;ACADEMIC_TEACHER;c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe

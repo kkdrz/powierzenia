@@ -9,7 +9,7 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import PageNotFound from 'app/shared/error/page-not-found';
 import {AUTHORITIES} from 'app/config/constants';
-import TeachersPreferences from "app/modules/teachersPreferences/teachersPreferences";
+import TeachersPreferences from "app/modules/teachersPreferences/teachers-preferences";
 
 const Admin = Loadable({
   loader: () => import(/* webpackChunkName: "administration" */ 'app/modules/administration'),

@@ -18,5 +18,7 @@ export interface ITeacher {
 }
 
 export const defaultValue: Readonly<ITeacher> = {
-  agreedToAdditionalPensum: false
+  agreedToAdditionalPensum: false,
+  preferedCourses: [],
+  knowledgeAreas: []
 };
