@@ -84,6 +84,13 @@ public class TeacherServiceImpl implements TeacherService {
             .map(teacherMapper::toDto);
     }
 
+    @Override
+    public Optional<TeacherDTO> findOneByUserId(String userId) {
+        log.debug("Request to get Teacher with userId: {}", userId);
+        return teacherRepository.findOneWithUserId(userId)
+            .map(teacherMapper::toDto);
+    }
+
     /**
      * Delete the teacher by id.
      *

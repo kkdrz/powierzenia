@@ -43,6 +43,14 @@ public interface TeacherService {
     Optional<TeacherDTO> findOne(Long id);
 
     /**
+     * Get the "id" teacher.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    Optional<TeacherDTO> findOneByUserId(String userId);
+
+    /**
      * Delete the "id" teacher.
      *
      * @param id the id of the entity.
