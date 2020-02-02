@@ -161,7 +161,7 @@
       "credentials": [
         {
           "type": "password",
-          "value": "teacher"
+          "value": "entruster"
         }
       ],
       "disableableCredentialTypes": [],

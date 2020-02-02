@@ -1,0 +1,15 @@
+user_id;authority_name
+1;ROLE_ADMIN
+1;ROLE_USER
+c4af4e2f-b432-4c3b-8405-yeyrt465iet4;ROLE_USER
+c4af4e2f-b432-4c3b-8405-yeyrt465iet4;ROLE_ENTRUSTER
+c4af4e2f-b432-4c3b-8405-cca86cd5b97c;ROLE_USER
+c4af4e2f-b432-4c3b-8405-cca86cd5b97c;ROLE_ENTRUSTER
+c5tu4e6f-j332-4c3b-7654-rty65cd5ertd;ROLE_USER
+c5tu4e6f-j332-4c3b-7654-rty65cd5ertd;ROLE_TEACHER
+c4af4e2f-b432-4c3b-8405-dkrje846fyeu;ROLE_USER
+c4af4e2f-b432-4c3b-8405-dkrje846fyeu;ROLE_TEACHER
+c4af4e2f-b432-4c3b-8405-mmdjur74635w;ROLE_USER
+c4af4e2f-b432-4c3b-8405-mmdjur74635w;ROLE_TEACHER
+c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe;ROLE_USER
+c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe;ROLE_TEACHER
