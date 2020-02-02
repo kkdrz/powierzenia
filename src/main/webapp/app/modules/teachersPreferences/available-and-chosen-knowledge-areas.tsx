@@ -1,4 +1,3 @@
-/* tslint:disable */
 import './teachers-preferences.scss';
 
 import React from 'react';
@@ -18,12 +17,7 @@ export const AvailableAndChosenKnowledgeAreas = (props) => {
   };
 
   const onChosenClick = item => {
-
-    const index = props.chosen.index(item);
-    if (index !== -1) {
-      props.onUpdate(...props.chosen.split(index, 1));
-    }
-
+    props.onUpdate(props.chosen.filter(i => i.id !== item.id));
   };
 
   return (
