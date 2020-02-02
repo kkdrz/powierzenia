@@ -23,27 +23,27 @@ export const AvailableAndChosenKnowledgeAreas = (props) => {
   return (
     <Row>
       <Col style={leftColumnStyle} sm="6">
-        {props.available.map((item, i) => {
-          return <Row className={"mt-2"} key={i}>
-            <Col sm={12}>
-              <Button onClick={() => onAvailableClick(item)} block>
+        <Row>
+          {props.available.map((item, i) => {
+            return <Col key={i} xs="auto" className={"mt-1 pr-1 "}>
+              <Button onClick={() => onAvailableClick(item)}>
                 {item.type}
               </Button>
             </Col>
-          </Row>
-        })}
+          })}
+        </Row>
       </Col>
       <Col sm="6">
         <Row><Col><h3>Declared competences</h3></Col></Row>
-        {props.chosen.map((item, i) => {
-          return <Row className={"mt-2"} key={i}>
-            <Col sm={12} onClick={() => onChosenClick(item)}>
-              <Button block>
+        <Row>
+          {props.chosen.map((item, i) => {
+            return <Col key={i} xs="auto" className={"mt-1 pr-1 "} onClick={() => onChosenClick(item)}>
+              <Button color={"success"} outline block>
                 {item.type}
               </Button>
             </Col>
-          </Row>
-        })}
+          })}
+        </Row>
       </Col>
     </Row>
   );
