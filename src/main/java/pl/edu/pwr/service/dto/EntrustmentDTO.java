@@ -1,5 +1,6 @@
 package pl.edu.pwr.service.dto;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,15 +11,20 @@ public class EntrustmentDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Hours are required")
     private Integer hours;
 
+    @NotNull(message = "Hours multiplier is required")
     private Float hoursMultiplier;
 
 
+    @NotNull(message = "Entrustment plan is required")
     private Long entrustmentPlanId;
 
+    @NotNull(message = "Course class is required")
     private Long courseClassId;
 
+    @NotNull(message = "Teacher is required")
     private Long teacherId;
 
     public Long getId() {

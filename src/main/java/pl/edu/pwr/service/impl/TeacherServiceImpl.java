@@ -85,10 +85,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Optional<TeacherDTO> findOneByUserId(String userId) {
-        log.debug("Request to get Teacher with userId: {}", userId);
-        return teacherRepository.findOneWithUserId(userId)
-            .map(teacherMapper::toDto);
+    public Optional<TeacherDTO> findOneByUserId(String id) {
+        log.debug("Request to get Teacher by user Id : {}", id);
+        return teacherRepository.findOneByUser_Id(id).map(teacherMapper::toDto);
     }
 
     /**

@@ -96,6 +96,13 @@ export const TeacherUpdate = (props: ITeacherUpdateProps) => {
                 </Label>
                 <AvField id="teacher-pensum" type="string" className="form-control" name="pensum"/>
               </AvGroup>
+              <AvGroup>
+                <Label id="additionalPensumThatDoesntRequireAgreementLabel" for="teacher-additional-pensum">
+                  Additional pensum that does not require agreement
+                </Label>
+                <AvField id="teacher-additional-pensum" type="string" className="form-control"
+                         name="additionalPensumThatDoesntRequireAgreement"/>
+              </AvGroup>
               <AvGroup check>
                 <Label id="agreedToAdditionalPensumLabel">
                   <AvInput

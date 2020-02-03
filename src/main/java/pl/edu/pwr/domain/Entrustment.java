@@ -1,8 +1,11 @@
 package pl.edu.pwr.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import pl.edu.pwr.domain.validators.Entrustment.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -10,6 +13,11 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "entrustment")
+@TeacherCantExceedHisHourLimitForAcademicYear
+@AcademicOrDoctorantCantExceedHisPensumIfNotAgreedTo
+@TeacherEntrustedHoursCanExceedPensumIfEveryOtherTeacherHasReachedHisPensum
+@CanEntrustClassToTeacherOnlyOnce
+@SumEntrustmentsHoursCantExceedCourseClassHours
 public class Entrustment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,21 +28,28 @@ public class Entrustment implements Serializable {
     private Long id;
 
     @Column(name = "hours")
+    @NotNull(message = "Hours are required")
+    @Min(value = 0, message = "Hours have to be a positive number")
     private Integer hours;
 
     @Column(name = "hours_multiplier")
+    @NotNull(message = "Hours multiplier is required")
+    @Min(value = 0, message = "Hours multipliter has to be a positive number")
     private Float hoursMultiplier;
 
     @ManyToOne
     @JsonIgnoreProperties("entrustments")
+    @NotNull(message = "Entrustment plan is required")
     private EntrustmentPlan entrustmentPlan;
 
     @ManyToOne
     @JsonIgnoreProperties("entrustments")
+    @NotNull(message = "Course class is required")
     private CourseClass courseClass;
 
     @ManyToOne
     @JsonIgnoreProperties("entrustments")
+    @NotNull(message = "Teacher is required")
     private Teacher teacher;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

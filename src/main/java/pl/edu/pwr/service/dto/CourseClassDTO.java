@@ -2,6 +2,7 @@ package pl.edu.pwr.service.dto;
 
 import pl.edu.pwr.domain.enumeration.ClassFormType;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,11 +13,13 @@ public class CourseClassDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Hours are required")
     private Integer hours;
 
+    @NotNull(message = "Class form is required")
     private ClassFormType form;
 
-
+    @NotNull(message = "Course is required")
     private Long courseId;
 
     public Long getId() {

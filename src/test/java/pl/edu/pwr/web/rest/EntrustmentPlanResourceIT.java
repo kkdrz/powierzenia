@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -16,7 +17,9 @@ import pl.edu.pwr.PowierzeniaApp;
 import pl.edu.pwr.config.TestSecurityConfiguration;
 import pl.edu.pwr.domain.EntrustmentPlan;
 import pl.edu.pwr.domain.enumeration.SemesterType;
+import pl.edu.pwr.repository.EducationPlanRepository;
 import pl.edu.pwr.repository.EntrustmentPlanRepository;
+import pl.edu.pwr.repository.FieldOfStudyRepository;
 import pl.edu.pwr.service.EntrustmentPlanService;
 import pl.edu.pwr.service.dto.EntrustmentPlanDTO;
 import pl.edu.pwr.service.mapper.EntrustmentPlanMapper;
@@ -64,12 +67,17 @@ public class EntrustmentPlanResourceIT {
     @Autowired
     private EntityManager em;
 
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
 
     private MockMvc restEntrustmentPlanMockMvc;
 
     private EntrustmentPlan entrustmentPlan;
+    @Autowired
+    private EducationPlanRepository educationPlanRepository;
+    @Autowired
+    private FieldOfStudyRepository fieldOfStudyRepository;
 
     /**
      * Create an entity for this test.
@@ -78,10 +86,10 @@ public class EntrustmentPlanResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EntrustmentPlan createEntity(EntityManager em) {
-        EntrustmentPlan entrustmentPlan = new EntrustmentPlan()
+        return new EntrustmentPlan()
             .academicYear(DEFAULT_ACADEMIC_YEAR)
-            .semesterType(DEFAULT_SEMESTER_TYPE);
-        return entrustmentPlan;
+            .semesterType(DEFAULT_SEMESTER_TYPE)
+            .educationPlan(EducationPlanResourceIT.createEntity(em));
     }
 
     /**
@@ -91,10 +99,10 @@ public class EntrustmentPlanResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EntrustmentPlan createUpdatedEntity(EntityManager em) {
-        EntrustmentPlan entrustmentPlan = new EntrustmentPlan()
+        return new EntrustmentPlan()
             .academicYear(UPDATED_ACADEMIC_YEAR)
-            .semesterType(UPDATED_SEMESTER_TYPE);
-        return entrustmentPlan;
+            .semesterType(UPDATED_SEMESTER_TYPE)
+            .educationPlan(EducationPlanResourceIT.createEntity(em));
     }
 
     @BeforeEach
@@ -112,6 +120,8 @@ public class EntrustmentPlanResourceIT {
     @BeforeEach
     public void initTest() {
         entrustmentPlan = createEntity(em);
+        fieldOfStudyRepository.saveAndFlush(entrustmentPlan.getEducationPlan().getFieldOfStudy());
+        educationPlanRepository.saveAndFlush(entrustmentPlan.getEducationPlan());
     }
 
     @Test

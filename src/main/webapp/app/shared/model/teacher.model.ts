@@ -8,6 +8,7 @@ export interface ITeacher {
   id?: number;
   hourLimit?: number;
   pensum?: number;
+  additionalPensumThatDoesntRequireAgreement?: number;
   agreedToAdditionalPensum?: boolean;
   type?: TeacherType;
   userId?: number;

@@ -1,5 +1,6 @@
 package pl.edu.pwr.service.dto;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ public class FieldOfStudyDTO implements Serializable {
 
     private Long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
 
 

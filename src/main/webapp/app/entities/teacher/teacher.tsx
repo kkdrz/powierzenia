@@ -72,6 +72,9 @@ export const Teacher = (props: ITeacherProps) => {
               <th className="hand" onClick={sort('pensum')}>
                 Pensum <FontAwesomeIcon icon="sort"/>
               </th>
+              <th className="hand" onClick={sort('additionalPensumThatDoesntRequireAgreement')}>
+                Additional pensum that doesnt require agreement <FontAwesomeIcon icon="sort"/>
+              </th>
               <th className="hand" onClick={sort('agreedToAdditionalPensum')}>
                 Agreed To Additional Pensum <FontAwesomeIcon icon="sort"/>
               </th>
@@ -94,6 +97,7 @@ export const Teacher = (props: ITeacherProps) => {
                 </td>
                 <td>{teacher.hourLimit}</td>
                 <td>{teacher.pensum}</td>
+                <td>{teacher.additionalPensumThatDoesntRequireAgreement}</td>
                 <td>{teacher.agreedToAdditionalPensum ? 'true' : 'false'}</td>
                 <td>{teacher.type}</td>
                 <td>{teacher.userId ? teacher.userId : ''}</td>

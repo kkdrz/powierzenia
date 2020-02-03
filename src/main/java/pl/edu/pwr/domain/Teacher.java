@@ -3,8 +3,10 @@ package pl.edu.pwr.domain;
 import pl.edu.pwr.domain.enumeration.TeacherType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -22,20 +24,26 @@ public class Teacher implements Serializable {
     private Long id;
 
     @Column(name = "hour_limit")
+    @NotNull(message = "Hour limit is required")
     private Integer hourLimit;
 
     @Column(name = "pensum")
     private Integer pensum;
+
+    @Column(name = "additional_pensum_that_doesnt_require_agreement")
+    private Integer additionalPensumThatDoesntRequireAgreement;
 
     @Column(name = "agreed_to_additional_pensum")
     private Boolean agreedToAdditionalPensum;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
+    @NotNull(message = "Teacher type is required")
     private TeacherType type;
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotNull(message = "User is required")
     private User user;
 
     @OneToMany(mappedBy = "teacher")
@@ -77,6 +85,10 @@ public class Teacher implements Serializable {
         return this;
     }
 
+    public Optional<Integer> entrustedHoursByYear(long academicYear) {
+        return entrustments.stream().filter(entrustment -> entrustment.getEntrustmentPlan().getAcademicYear() == academicYear).map(entrustment -> entrustment.getHours() * entrustment.getHoursMultiplier()).map(Float::intValue).reduce(Integer::sum);
+    }
+
     public void setHourLimit(Integer hourLimit) {
         this.hourLimit = hourLimit;
     }
@@ -92,6 +104,19 @@ public class Teacher implements Serializable {
 
     public void setPensum(Integer pensum) {
         this.pensum = pensum;
+    }
+
+    public Integer getAdditionalPensumThatDoesntRequireAgreement() {
+        return additionalPensumThatDoesntRequireAgreement;
+    }
+
+    public void setAdditionalPensumThatDoesntRequireAgreement(Integer allowedAdditionalPensum) {
+        this.additionalPensumThatDoesntRequireAgreement = allowedAdditionalPensum;
+    }
+
+    public Teacher allowedAdditionalPensum(Integer allowedAdditionalPensum) {
+        this.additionalPensumThatDoesntRequireAgreement = allowedAdditionalPensum;
+        return this;
     }
 
     public Boolean isAgreedToAdditionalPensum() {

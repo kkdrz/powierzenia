@@ -6,11 +6,13 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,6 +20,7 @@ import pl.edu.pwr.service.TeacherService;
 import pl.edu.pwr.service.dto.TeacherDTO;
 import pl.edu.pwr.web.rest.errors.BadRequestAlertException;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
@@ -52,8 +55,15 @@ public class TeacherResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/teachers")
-    public ResponseEntity<TeacherDTO> createTeacher(@RequestBody TeacherDTO teacherDTO) throws URISyntaxException {
+    public ResponseEntity<TeacherDTO> createTeacher(@RequestBody @Valid TeacherDTO teacherDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to save Teacher : {}", teacherDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (teacherDTO.getId() != null) {
             throw new BadRequestAlertException("A new teacher cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -73,8 +83,15 @@ public class TeacherResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/teachers")
-    public ResponseEntity<TeacherDTO> updateTeacher(@RequestBody TeacherDTO teacherDTO) throws URISyntaxException {
+    public ResponseEntity<TeacherDTO> updateTeacher(@RequestBody @Valid TeacherDTO teacherDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to update Teacher : {}", teacherDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (teacherDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

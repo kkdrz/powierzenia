@@ -1,5 +1,7 @@
 package pl.edu.pwr.service.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,13 +14,16 @@ public class CourseDTO implements Serializable {
 
     private Long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Code is required")
     private String code;
 
 
     private Set<KnowledgeAreaDTO> tags = new HashSet<>();
 
+    @NotNull(message = "Education plan is required")
     private Long educationPlanId;
 
     public Long getId() {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.edu.pwr.domain.enumeration.ClassFormType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +25,7 @@ public class ClassForm implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
+    @NotNull(message = "Class form type is required")
     private ClassFormType type;
 
     @ManyToMany(mappedBy = "allowedClassForms")

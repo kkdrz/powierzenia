@@ -97,4 +97,10 @@ public final class SecurityUtils {
             .map(SimpleGrantedAuthority::new)
             .collect(Collectors.toList());
     }
+
+    public static String getCurrentUserId() {
+
+        DefaultOidcUser authentication = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return authentication.getUserInfo().getSubject();
+    }
 }

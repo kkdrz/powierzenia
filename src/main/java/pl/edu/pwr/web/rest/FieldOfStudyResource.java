@@ -6,16 +6,19 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.edu.pwr.service.FieldOfStudyService;
 import pl.edu.pwr.service.dto.FieldOfStudyDTO;
 import pl.edu.pwr.web.rest.errors.BadRequestAlertException;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,8 +49,15 @@ public class FieldOfStudyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/field-of-studies")
-    public ResponseEntity<FieldOfStudyDTO> createFieldOfStudy(@RequestBody FieldOfStudyDTO fieldOfStudyDTO) throws URISyntaxException {
+    public ResponseEntity<FieldOfStudyDTO> createFieldOfStudy(@RequestBody @Valid FieldOfStudyDTO fieldOfStudyDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to save FieldOfStudy : {}", fieldOfStudyDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (fieldOfStudyDTO.getId() != null) {
             throw new BadRequestAlertException("A new fieldOfStudy cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -67,8 +77,15 @@ public class FieldOfStudyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/field-of-studies")
-    public ResponseEntity<FieldOfStudyDTO> updateFieldOfStudy(@RequestBody FieldOfStudyDTO fieldOfStudyDTO) throws URISyntaxException {
+    public ResponseEntity<FieldOfStudyDTO> updateFieldOfStudy(@RequestBody @Valid FieldOfStudyDTO fieldOfStudyDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to update FieldOfStudy : {}", fieldOfStudyDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (fieldOfStudyDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

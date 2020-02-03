@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -19,6 +20,7 @@ import pl.edu.pwr.domain.enumeration.Specialization;
 import pl.edu.pwr.domain.enumeration.StudiesLevel;
 import pl.edu.pwr.domain.enumeration.StudiesType;
 import pl.edu.pwr.repository.EducationPlanRepository;
+import pl.edu.pwr.repository.FieldOfStudyRepository;
 import pl.edu.pwr.service.EducationPlanService;
 import pl.edu.pwr.service.dto.EducationPlanDTO;
 import pl.edu.pwr.service.mapper.EducationPlanMapper;
@@ -72,12 +74,15 @@ public class EducationPlanResourceIT {
     @Autowired
     private EntityManager em;
 
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
 
     private MockMvc restEducationPlanMockMvc;
 
     private EducationPlan educationPlan;
+    @Autowired
+    private FieldOfStudyRepository fieldOfStudyRepository;
 
     /**
      * Create an entity for this test.
@@ -90,7 +95,8 @@ public class EducationPlanResourceIT {
             .startAcademicYear(DEFAULT_START_ACADEMIC_YEAR)
             .specialization(DEFAULT_SPECIALIZATION)
             .studiesLevel(DEFAULT_STUDIES_LEVEL)
-            .studiesType(DEFAULT_STUDIES_TYPE);
+            .studiesType(DEFAULT_STUDIES_TYPE)
+            .fieldOfStudy(FieldOfStudyResourceIT.createEntity(em));
         return educationPlan;
     }
 
@@ -105,7 +111,8 @@ public class EducationPlanResourceIT {
             .startAcademicYear(UPDATED_START_ACADEMIC_YEAR)
             .specialization(UPDATED_SPECIALIZATION)
             .studiesLevel(UPDATED_STUDIES_LEVEL)
-            .studiesType(UPDATED_STUDIES_TYPE);
+            .studiesType(UPDATED_STUDIES_TYPE)
+            .fieldOfStudy(FieldOfStudyResourceIT.createEntity(em));
         return educationPlan;
     }
 
@@ -124,6 +131,7 @@ public class EducationPlanResourceIT {
     @BeforeEach
     public void initTest() {
         educationPlan = createEntity(em);
+        fieldOfStudyRepository.saveAndFlush(educationPlan.getFieldOfStudy());
     }
 
     @Test

@@ -1,9 +1,10 @@
 id;login;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by
 1;system;System;System;system@localhost;;true;en;system;system
 2;anonymoususer;Anonymous;User;anonymous@localhost;;true;en;system;system
-c5tu4e6f-j332-4c3b-7654-rty65cd5ertd;teacher;Anna;Kowal;anna.kowal@pwr.edu.pl;;true;en;system;system
-c4af4e2f-b432-4c3b-8405-dkrje846fyeu;michal.lesz;Michal;Lesz;anything@pwr.edu.pl;;true;en;system;system
-c4af4e2f-b432-4c3b-8405-mmdjur74635w;pawel.kozidrak;Pawel;Kozidrak;pawel.kozidrak@pwr.edu.pl;;true;en;system;system
-c4af4e2f-b432-4c3b-8405-yeyrt465iet4;julia.kozik;Julia;Kozik;julia.kozik@pwr.edu.pl;;true;en;system;system
-c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe;krystian.matejko;Krystian;Matejko;krystian.matejko@pwr.edu.pl;;true;en;system;system
+4c973896-5761-41fc-8217-07c5d13a004b;admin;Admin;Administrator;admin@localhost;;true;en;system;system
 c4af4e2f-b432-4c3b-8405-cca86cd5b97c;entruster;Monika;Oaza;oaza.monika@pwr.edu.pl;;true;en;system;system
+c5tu4e6f-j332-4c3b-7654-rty65cd5ertd;teacher;Anna;Kowal;anna.kowal@pwr.edu.pl;;true;en;system;system
+c4af4e2f-b432-4c3b-8405-dkrje846fyeu;michal.lesz;Michal;Lesz;michal.lesz@pwr.edu.pl;;true;en;system;system
+c4af4e2f-b432-4c3b-8405-yeyrt465iet4;julia.kozik;Julia;Kozik;julia.kozik@pwr.edu.pl;;true;en;system;system
+c4af4e2f-b432-4c3b-8405-mmdjur74635w;pawel.kozidrak;Pawel;Kozidrak;pawel.kozidrak@pwr.edu.pl;;true;en;system;system
+c4af4e2f-b432-4c3b-8405-aaabbbaaaqwe;krystian.matejko;Krystian;Matejko;krystian.matejko@pwr.edu.pl;;true;en;system;system

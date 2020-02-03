@@ -17,9 +17,9 @@
     <include file="config/liquibase/changelog/20200122125504_added_entity_Teacher.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125505_added_entity_Entrustment.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200122125507_added_entity_Course.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125506_added_entity_CourseClass.xml"
              relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200122125507_added_entity_Course.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125508_added_entity_EducationPlan.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125509_added_entity_EntrustmentPlan.xml"
@@ -31,17 +31,17 @@
     <include file="config/liquibase/changelog/20200122125512_added_entity_ClassForm.xml"
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20200122125504_added_entity_constraints_Teacher.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200122125505_added_entity_constraints_Entrustment.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200122125506_added_entity_constraints_CourseClass.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200122125507_added_entity_constraints_Course.xml"
-             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125508_added_entity_constraints_EducationPlan.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125509_added_entity_constraints_EntrustmentPlan.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200122125507_added_entity_constraints_Course.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200122125506_added_entity_constraints_CourseClass.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200122125504_added_entity_constraints_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200122125505_added_entity_constraints_Entrustment.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200122125504_added_entity_constraints_Teacher.xml"
              relativeToChangelogFile="false"/>

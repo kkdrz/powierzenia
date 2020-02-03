@@ -32,6 +32,10 @@ export const TeacherDetail = (props: ITeacherDetailProps) => {
           </dt>
           <dd>{teacherEntity.pensum}</dd>
           <dt>
+            <span id="pensum">Additional pensum that does not require agreement</span>
+          </dt>
+          <dd>{teacherEntity.additionalPensumThatDoesntRequireAgreement}</dd>
+          <dt>
             <span id="agreedToAdditionalPensum">Agreed To Additional Pensum</span>
           </dt>
           <dd>{teacherEntity.agreedToAdditionalPensum ? 'true' : 'false'}</dd>

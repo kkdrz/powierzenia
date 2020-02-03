@@ -10,6 +10,7 @@ import pl.edu.pwr.domain.Entrustment;
 import pl.edu.pwr.repository.EntrustmentRepository;
 import pl.edu.pwr.service.EntrustmentService;
 import pl.edu.pwr.service.dto.EntrustmentDTO;
+import pl.edu.pwr.service.dto.TeacherDTO;
 import pl.edu.pwr.service.mapper.EntrustmentMapper;
 
 import java.util.Optional;
@@ -58,6 +59,20 @@ public class EntrustmentServiceImpl implements EntrustmentService {
         log.debug("Request to get all Entrustments");
         return entrustmentRepository.findAll(pageable)
             .map(entrustmentMapper::toDto);
+    }
+
+    /**
+     * Get all the entrustments by teacher.
+     *
+     * @param pageable the pagination information.
+     * @param teacher  the teacher to search by.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<EntrustmentDTO> findAll(Pageable pageable, TeacherDTO teacher) {
+        log.debug("Request to get all Entrustments of teacher: {}", teacher.toString());
+        return entrustmentRepository.findAllByTeacher_Id(pageable, teacher.getId()).map(entrustmentMapper::toDto);
     }
 
 

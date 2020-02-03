@@ -3,6 +3,7 @@ package pl.edu.pwr.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import pl.edu.pwr.service.dto.EntrustmentDTO;
+import pl.edu.pwr.service.dto.TeacherDTO;
 
 import java.util.Optional;
 
@@ -27,6 +28,14 @@ public interface EntrustmentService {
      */
     Page<EntrustmentDTO> findAll(Pageable pageable);
 
+    /**
+     * Get all the entrustments of specified teacher.
+     *
+     * @param pageable the pagination information.
+     * @param teacher  the specified teacher.
+     * @return the list of entities.
+     */
+    Page<EntrustmentDTO> findAll(Pageable pageable, TeacherDTO teacher);
 
     /**
      * Get the "id" entrustment.

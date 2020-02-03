@@ -4,6 +4,7 @@ import pl.edu.pwr.domain.enumeration.Specialization;
 import pl.edu.pwr.domain.enumeration.StudiesLevel;
 import pl.edu.pwr.domain.enumeration.StudiesType;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,15 +15,20 @@ public class EducationPlanDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Start academic year is required")
     private Integer startAcademicYear;
 
+    @NotNull(message = "Specialization is required")
     private Specialization specialization;
 
+    @NotNull(message = "Studies level is required")
     private StudiesLevel studiesLevel;
 
+    @NotNull(message = "Studies type is required")
     private StudiesType studiesType;
 
 
+    @NotNull(message = "Field of study is required")
     private Long fieldOfStudyId;
 
     public Long getId() {

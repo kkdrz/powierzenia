@@ -2,6 +2,7 @@ package pl.edu.pwr.service.dto;
 
 import pl.edu.pwr.domain.enumeration.SemesterType;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,11 +13,13 @@ public class EntrustmentPlanDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Academic year is required")
     private Integer academicYear;
 
+    @NotNull(message = "Semester type is required")
     private SemesterType semesterType;
 
-
+    @NotNull(message = "Education plan is required")
     private Long educationPlanId;
 
     public Long getId() {

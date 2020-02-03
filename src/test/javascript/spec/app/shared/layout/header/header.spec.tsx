@@ -14,7 +14,8 @@ describe('Header', () => {
   const devProps = {
     isAuthenticated: true,
     isAdmin: true,
-    isTeacher: true,
+    isEntruster: false,
+    isTeacher: false,
     ribbonEnv: 'dev',
     isInProduction: false,
     isSwaggerEnabled: true
@@ -27,7 +28,8 @@ describe('Header', () => {
   };
   const userProps = {
     ...prodProps,
-    isAdmin: false
+    isAdmin: false,
+    isEntruster: true
   };
   const guestProps = {
     ...prodProps,

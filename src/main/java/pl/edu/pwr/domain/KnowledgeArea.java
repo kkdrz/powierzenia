@@ -3,6 +3,7 @@ package pl.edu.pwr.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class KnowledgeArea implements Serializable {
     private Long id;
 
     @Column(name = "type")
+    @NotEmpty(message = "Type is required")
     private String type;
 
     @ManyToMany(mappedBy = "knowledgeAreas")

@@ -27,6 +27,8 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     @Query("select teacher from Teacher teacher left join fetch teacher.allowedClassForms left join fetch teacher.knowledgeAreas left join fetch teacher.preferedCourses where teacher.id =:id")
     Optional<Teacher> findOneWithEagerRelationships(@Param("id") Long id);
 
+    Optional<Teacher> findOneByUser_Id(final String userId);
+
     @Query("select teacher from Teacher teacher left join fetch teacher.allowedClassForms left join fetch teacher.knowledgeAreas left join fetch teacher.preferedCourses where teacher.user.id =:userId")
     Optional<Teacher> findOneWithUserId(String userId);
 }

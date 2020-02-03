@@ -14,19 +14,19 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="start_academic_year" type="integer">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="specialization" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="studies_level" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="studies_type" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="field_of_study_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -52,9 +52,10 @@
             tableName="education_plan">
             <column name="id" type="numeric"/>
             <column name="start_academic_year" type="numeric"/>
-            <column name="specialization" type="string"/>
-            <column name="studies_level" type="string"/>
-            <column name="studies_type" type="string"/>
+            <column name="specialization" type="string" defaultValue="SOFTWARE_DEVELOPMENT"/>
+            <column name="studies_level" type="string" defaultValue="II"/>
+            <column name="studies_type" type="string" defaultValue="STATIONARY"/>
+            <column name="field_of_study_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -18,6 +19,8 @@ import pl.edu.pwr.PowierzeniaApp;
 import pl.edu.pwr.config.TestSecurityConfiguration;
 import pl.edu.pwr.domain.Course;
 import pl.edu.pwr.repository.CourseRepository;
+import pl.edu.pwr.repository.EducationPlanRepository;
+import pl.edu.pwr.repository.FieldOfStudyRepository;
 import pl.edu.pwr.service.CourseService;
 import pl.edu.pwr.service.dto.CourseDTO;
 import pl.edu.pwr.service.mapper.CourseMapper;
@@ -73,12 +76,17 @@ public class CourseResourceIT {
     @Autowired
     private EntityManager em;
 
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
 
     private MockMvc restCourseMockMvc;
 
     private Course course;
+    @Autowired
+    private EducationPlanRepository educationPlanRepository;
+    @Autowired
+    private FieldOfStudyRepository fieldOfStudyRepository;
 
     /**
      * Create an entity for this test.
@@ -89,7 +97,8 @@ public class CourseResourceIT {
     public static Course createEntity(EntityManager em) {
         Course course = new Course()
             .name(DEFAULT_NAME)
-            .code(DEFAULT_CODE);
+            .code(DEFAULT_CODE)
+            .educationPlan(EducationPlanResourceIT.createEntity(em));
         return course;
     }
 
@@ -102,7 +111,8 @@ public class CourseResourceIT {
     public static Course createUpdatedEntity(EntityManager em) {
         Course course = new Course()
             .name(UPDATED_NAME)
-            .code(UPDATED_CODE);
+            .code(UPDATED_CODE)
+            .educationPlan(EducationPlanResourceIT.createEntity(em));
         return course;
     }
 
@@ -121,6 +131,8 @@ public class CourseResourceIT {
     @BeforeEach
     public void initTest() {
         course = createEntity(em);
+        fieldOfStudyRepository.saveAndFlush(course.getEducationPlan().getFieldOfStudy());
+        educationPlanRepository.saveAndFlush(course.getEducationPlan());
     }
 
     @Test

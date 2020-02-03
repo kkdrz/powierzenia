@@ -11,6 +11,7 @@ import {AccountMenu, AdminMenu, EntitiesMenu} from '../menus';
 export interface IHeaderProps {
   isAuthenticated: boolean;
   isAdmin: boolean;
+  isEntruster: boolean;
   isTeacher: boolean;
   ribbonEnv: string;
   isInProduction: boolean;
@@ -42,7 +43,8 @@ const Header = (props: IHeaderProps) => {
           <Nav id="header-tabs" className="ml-auto" navbar>
             <Home/>
             {props.isAuthenticated && props.isTeacher && <Preferences/>}
-            {props.isAuthenticated && <EntitiesMenu/>}
+            {props.isAuthenticated &&
+            <EntitiesMenu isAdmin={props.isAdmin} isEntruster={props.isEntruster} isTeacher={props.isTeacher}/>}
             {props.isAuthenticated && props.isAdmin && (
               <AdminMenu showSwagger={props.isSwaggerEnabled} showDatabase={!props.isInProduction}/>
             )}

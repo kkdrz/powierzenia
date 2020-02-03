@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -15,8 +16,9 @@ import org.springframework.validation.Validator;
 import pl.edu.pwr.PowierzeniaApp;
 import pl.edu.pwr.config.TestSecurityConfiguration;
 import pl.edu.pwr.domain.Entrustment;
-import pl.edu.pwr.repository.EntrustmentRepository;
+import pl.edu.pwr.repository.*;
 import pl.edu.pwr.service.EntrustmentService;
+import pl.edu.pwr.service.TeacherService;
 import pl.edu.pwr.service.dto.EntrustmentDTO;
 import pl.edu.pwr.service.mapper.EntrustmentMapper;
 import pl.edu.pwr.web.rest.errors.ExceptionTranslator;
@@ -52,6 +54,9 @@ public class EntrustmentResourceIT {
     private EntrustmentService entrustmentService;
 
     @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -63,12 +68,28 @@ public class EntrustmentResourceIT {
     @Autowired
     private EntityManager em;
 
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
 
     private MockMvc restEntrustmentMockMvc;
 
     private Entrustment entrustment;
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private FieldOfStudyRepository fieldOfStudyRepository;
+    @Autowired
+    private EducationPlanRepository educationPlanRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
+    @Autowired
+    private EntrustmentPlanRepository entrustmentPlanRepository;
+    @Autowired
+    private CourseRepository courseRepository;
+    @Autowired
+    private CourseClassRepository courseClassRepository;
 
     /**
      * Create an entity for this test.
@@ -79,7 +100,10 @@ public class EntrustmentResourceIT {
     public static Entrustment createEntity(EntityManager em) {
         Entrustment entrustment = new Entrustment()
             .hours(DEFAULT_HOURS)
-            .hoursMultiplier(DEFAULT_HOURS_MULTIPLIER);
+            .hoursMultiplier(DEFAULT_HOURS_MULTIPLIER)
+            .entrustmentPlan(EntrustmentPlanResourceIT.createEntity(em))
+            .teacher(TeacherResourceIT.createEntity(em))
+            .courseClass(CourseClassResourceIT.createEntity(em));
         return entrustment;
     }
 
@@ -92,14 +116,17 @@ public class EntrustmentResourceIT {
     public static Entrustment createUpdatedEntity(EntityManager em) {
         Entrustment entrustment = new Entrustment()
             .hours(UPDATED_HOURS)
-            .hoursMultiplier(UPDATED_HOURS_MULTIPLIER);
+            .hoursMultiplier(UPDATED_HOURS_MULTIPLIER)
+            .entrustmentPlan(EntrustmentPlanResourceIT.createEntity(em))
+            .teacher(TeacherResourceIT.createEntity(em))
+            .courseClass(CourseClassResourceIT.createEntity(em));
         return entrustment;
     }
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EntrustmentResource entrustmentResource = new EntrustmentResource(entrustmentService);
+        final EntrustmentResource entrustmentResource = new EntrustmentResource(entrustmentService, teacherService);
         this.restEntrustmentMockMvc = MockMvcBuilders.standaloneSetup(entrustmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -111,6 +138,17 @@ public class EntrustmentResourceIT {
     @BeforeEach
     public void initTest() {
         entrustment = createEntity(em);
+
+        userRepository.saveAndFlush(entrustment.getTeacher().getUser());
+        teacherRepository.saveAndFlush(entrustment.getTeacher());
+
+        fieldOfStudyRepository.saveAndFlush(entrustment.getEntrustmentPlan().getEducationPlan().getFieldOfStudy());
+        educationPlanRepository.saveAndFlush(entrustment.getEntrustmentPlan().getEducationPlan());
+        entrustmentPlanRepository.saveAndFlush(entrustment.getEntrustmentPlan());
+
+        entrustment.getCourseClass().getCourse().setEducationPlan(entrustment.getEntrustmentPlan().getEducationPlan());
+        courseRepository.saveAndFlush(entrustment.getCourseClass().getCourse());
+        courseClassRepository.saveAndFlush(entrustment.getCourseClass());
     }
 
     @Test

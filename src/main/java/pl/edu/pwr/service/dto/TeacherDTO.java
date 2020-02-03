@@ -2,6 +2,8 @@ package pl.edu.pwr.service.dto;
 
 import pl.edu.pwr.domain.enumeration.TeacherType;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,15 +16,20 @@ public class TeacherDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Hour limit is required")
     private Integer hourLimit;
 
     private Integer pensum;
 
+    private Integer additionalPensumThatDoesntRequireAgreement;
+
     private Boolean agreedToAdditionalPensum;
 
+    @NotNull(message = "Teacher type is required")
     private TeacherType type;
 
 
+    @NotBlank(message = "User id is required")
     private String userId;
 
     private Set<ClassFormDTO> allowedClassForms = new HashSet<>();
@@ -130,9 +137,18 @@ public class TeacherDTO implements Serializable {
             "id=" + getId() +
             ", hourLimit=" + getHourLimit() +
             ", pensum=" + getPensum() +
+            ", additionalPensumThatDoesntRequireAgreement=" + getAdditionalPensumThatDoesntRequireAgreement() +
             ", agreedToAdditionalPensum='" + isAgreedToAdditionalPensum() + "'" +
             ", type='" + getType() + "'" +
             ", userId='" + getUserId() + "'" +
             "}";
+    }
+
+    public Integer getAdditionalPensumThatDoesntRequireAgreement() {
+        return additionalPensumThatDoesntRequireAgreement;
+    }
+
+    public void setAdditionalPensumThatDoesntRequireAgreement(Integer additionalPensumThatDoesntRequireAgreement) {
+        this.additionalPensumThatDoesntRequireAgreement = additionalPensumThatDoesntRequireAgreement;
     }
 }

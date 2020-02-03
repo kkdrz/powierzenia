@@ -6,16 +6,19 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.edu.pwr.service.CourseClassService;
 import pl.edu.pwr.service.dto.CourseClassDTO;
 import pl.edu.pwr.web.rest.errors.BadRequestAlertException;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,8 +49,15 @@ public class CourseClassResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/course-classes")
-    public ResponseEntity<CourseClassDTO> createCourseClass(@RequestBody CourseClassDTO courseClassDTO) throws URISyntaxException {
+    public ResponseEntity<CourseClassDTO> createCourseClass(@RequestBody @Valid CourseClassDTO courseClassDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to save CourseClass : {}", courseClassDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (courseClassDTO.getId() != null) {
             throw new BadRequestAlertException("A new courseClass cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -67,8 +77,16 @@ public class CourseClassResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/course-classes")
-    public ResponseEntity<CourseClassDTO> updateCourseClass(@RequestBody CourseClassDTO courseClassDTO) throws URISyntaxException {
+    public ResponseEntity<CourseClassDTO> updateCourseClass(@RequestBody @Valid CourseClassDTO courseClassDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to update CourseClass : {}", courseClassDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
+
         if (courseClassDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

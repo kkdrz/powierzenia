@@ -6,6 +6,8 @@ import pl.edu.pwr.domain.enumeration.StudiesLevel;
 import pl.edu.pwr.domain.enumeration.StudiesType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,18 +27,23 @@ public class EducationPlan implements Serializable {
     private Long id;
 
     @Column(name = "start_academic_year")
+    @NotNull(message = "Start academic year is required")
+    @Min(value = 0, message = "Start academic year has to be a positive number")
     private Integer startAcademicYear;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "specialization")
+    @NotNull(message = "Specialization is required")
     private Specialization specialization;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "studies_level")
+    @NotNull(message = "Studies level is required")
     private StudiesLevel studiesLevel;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "studies_type")
+    @NotNull(message = "Studies type is required")
     private StudiesType studiesType;
 
     @OneToMany(mappedBy = "educationPlan")
@@ -47,6 +54,7 @@ public class EducationPlan implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("educationPlans")
+    @NotNull(message = "Field of study is required")
     private FieldOfStudy fieldOfStudy;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

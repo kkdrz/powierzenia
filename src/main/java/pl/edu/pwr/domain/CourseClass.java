@@ -2,8 +2,10 @@ package pl.edu.pwr.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import pl.edu.pwr.domain.enumeration.ClassFormType;
+import pl.edu.pwr.domain.validators.CourseClass.CourseDoesntHaveAClassWithThisClassForm;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "course_class")
+@CourseDoesntHaveAClassWithThisClassForm
 public class CourseClass implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,10 +26,12 @@ public class CourseClass implements Serializable {
     private Long id;
 
     @Column(name = "hours")
+    @NotNull(message = "Hours are required")
     private Integer hours;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "form")
+    @NotNull(message = "Class form is required")
     private ClassFormType form;
 
     @OneToMany(mappedBy = "courseClass")
@@ -34,6 +39,7 @@ public class CourseClass implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("classes")
+    @NotNull(message = "Course is required")
     private Course course;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

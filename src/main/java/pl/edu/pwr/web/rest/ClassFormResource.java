@@ -6,16 +6,19 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.edu.pwr.service.ClassFormService;
 import pl.edu.pwr.service.dto.ClassFormDTO;
 import pl.edu.pwr.web.rest.errors.BadRequestAlertException;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,8 +49,15 @@ public class ClassFormResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/class-forms")
-    public ResponseEntity<ClassFormDTO> createClassForm(@RequestBody ClassFormDTO classFormDTO) throws URISyntaxException {
+    public ResponseEntity<ClassFormDTO> createClassForm(@RequestBody @Valid ClassFormDTO classFormDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to save ClassForm : {}", classFormDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (classFormDTO.getId() != null) {
             throw new BadRequestAlertException("A new classForm cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -67,8 +77,15 @@ public class ClassFormResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/class-forms")
-    public ResponseEntity<ClassFormDTO> updateClassForm(@RequestBody ClassFormDTO classFormDTO) throws URISyntaxException {
+    public ResponseEntity<ClassFormDTO> updateClassForm(@RequestBody @Valid ClassFormDTO classFormDTO, BindingResult bindingResult) throws URISyntaxException {
         log.debug("REST request to update ClassForm : {}", classFormDTO);
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestAlertException(
+                bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).reduce("", (s, s2) -> s + "\n" + s2),
+                ENTITY_NAME,
+                "fields_invalid"
+            );
+        }
         if (classFormDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

@@ -112,7 +112,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/knowledge-areas/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers(HttpMethod.GET, "/knowledge-areas/**").hasAnyAuthority(AuthoritiesConstants.ENTRUSTER, AuthoritiesConstants.TEACHER)
 
-            .antMatchers("/teachers/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.TEACHER, AuthoritiesConstants.TEACHER)
+            .antMatchers("/teachers/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers(HttpMethod.GET, "/teachers/**").hasAnyAuthority(AuthoritiesConstants.TEACHER, AuthoritiesConstants.ENTRUSTER)
 
             .and()
             .oauth2Login()

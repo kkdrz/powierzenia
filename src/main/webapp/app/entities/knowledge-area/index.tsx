@@ -7,13 +7,18 @@ import KnowledgeArea from './knowledge-area';
 import KnowledgeAreaDetail from './knowledge-area-detail';
 import KnowledgeAreaUpdate from './knowledge-area-update';
 import KnowledgeAreaDeleteDialog from './knowledge-area-delete-dialog';
+import PrivateRoute from 'app/shared/auth/private-route';
+import {AUTHORITIES} from 'app/config/constants';
 
 const Routes = ({match}) => (
   <>
     <Switch>
-      <ErrorBoundaryRoute exact path={`${match.url}/:id/delete`} component={KnowledgeAreaDeleteDialog}/>
-      <ErrorBoundaryRoute exact path={`${match.url}/new`} component={KnowledgeAreaUpdate}/>
-      <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={KnowledgeAreaUpdate}/>
+      <PrivateRoute exact path={`${match.url}/:id/delete`} hasAnyAuthorities={[AUTHORITIES.ADMIN]}
+                    component={KnowledgeAreaDeleteDialog}/>
+      <PrivateRoute exact path={`${match.url}/new`} hasAnyAuthorities={[AUTHORITIES.ADMIN]}
+                    component={KnowledgeAreaUpdate}/>
+      <PrivateRoute exact path={`${match.url}/:id/edit`} hasAnyAuthorities={[AUTHORITIES.ADMIN]}
+                    component={KnowledgeAreaUpdate}/>
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={KnowledgeAreaDetail}/>
       <ErrorBoundaryRoute path={match.url} component={KnowledgeArea}/>
     </Switch>

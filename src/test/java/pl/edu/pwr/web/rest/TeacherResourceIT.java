@@ -1,10 +1,12 @@
 package pl.edu.pwr.web.rest;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -17,8 +19,10 @@ import org.springframework.validation.Validator;
 import pl.edu.pwr.PowierzeniaApp;
 import pl.edu.pwr.config.TestSecurityConfiguration;
 import pl.edu.pwr.domain.Teacher;
+import pl.edu.pwr.domain.User;
 import pl.edu.pwr.domain.enumeration.TeacherType;
 import pl.edu.pwr.repository.TeacherRepository;
+import pl.edu.pwr.repository.UserRepository;
 import pl.edu.pwr.service.TeacherService;
 import pl.edu.pwr.service.dto.TeacherDTO;
 import pl.edu.pwr.service.mapper.TeacherMapper;
@@ -49,11 +53,14 @@ public class TeacherResourceIT {
     private static final Boolean DEFAULT_AGREED_TO_ADDITIONAL_PENSUM = false;
     private static final Boolean UPDATED_AGREED_TO_ADDITIONAL_PENSUM = true;
 
-    private static final TeacherType DEFAULT_TYPE = TeacherType.EXTERNAL_SPECIALIST;
+    private static final TeacherType DEFAULT_TYPE = TeacherType.ACADEMIC_TEACHER;
     private static final TeacherType UPDATED_TYPE = TeacherType.DOCTORATE_STUDENT;
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Mock
     private TeacherRepository teacherRepositoryMock;
@@ -79,12 +86,15 @@ public class TeacherResourceIT {
     @Autowired
     private EntityManager em;
 
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
 
     private MockMvc restTeacherMockMvc;
 
     private Teacher teacher;
+
+    private User user;
 
     @BeforeEach
     public void setup() {
@@ -108,8 +118,10 @@ public class TeacherResourceIT {
         Teacher teacher = new Teacher()
             .hourLimit(DEFAULT_HOUR_LIMIT)
             .pensum(DEFAULT_PENSUM)
+            .allowedAdditionalPensum(0)
             .agreedToAdditionalPensum(DEFAULT_AGREED_TO_ADDITIONAL_PENSUM)
-            .type(DEFAULT_TYPE);
+            .type(DEFAULT_TYPE)
+            .user(UserResourceIT.createEntity(em));
         return teacher;
     }
     /**
@@ -123,13 +135,20 @@ public class TeacherResourceIT {
             .hourLimit(UPDATED_HOUR_LIMIT)
             .pensum(UPDATED_PENSUM)
             .agreedToAdditionalPensum(UPDATED_AGREED_TO_ADDITIONAL_PENSUM)
-            .type(UPDATED_TYPE);
+            .type(UPDATED_TYPE)
+            .user(UserResourceIT.createEntity(em));
         return teacher;
     }
 
     @BeforeEach
     public void initTest() {
         teacher = createEntity(em);
+        user = userRepository.saveAndFlush(teacher.getUser());
+    }
+
+    @AfterEach
+    public void destroyTest() {
+        userRepository.deleteAll();
     }
 
     @Test

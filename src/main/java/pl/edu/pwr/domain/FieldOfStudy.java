@@ -1,6 +1,7 @@
 package pl.edu.pwr.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,7 @@ public class FieldOfStudy implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name is required")
     private String name;
 
     @OneToMany(mappedBy = "fieldOfStudy")

@@ -2,6 +2,7 @@ package pl.edu.pwr.service.dto;
 
 import pl.edu.pwr.domain.enumeration.ClassFormType;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ public class ClassFormDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Form type is required")
     private ClassFormType type;
 
 

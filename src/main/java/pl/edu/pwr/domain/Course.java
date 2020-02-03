@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,9 +25,11 @@ public class Course implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Course name is required")
     private String name;
 
     @Column(name = "code")
+    @NotEmpty(message = "Course code is required")
     private String code;
 
     @OneToMany(mappedBy = "course")
@@ -39,6 +43,7 @@ public class Course implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("courses")
+    @NotNull(message = "Education plan is required")
     private EducationPlan educationPlan;
 
     @ManyToMany(mappedBy = "preferedCourses")
