@@ -41,9 +41,12 @@ node {
         }
     }
 
-    stage('packaging') {
-        sh "./gradlew bootJar -x test -Pprod -PnodeInstall --no-daemon"
+    stage('cleanup') {
         archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
     }
 
+    stage('publish to docker-hub') {
+        sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
+        sh "docker push pmorski/powierzenia"
+    }
 }

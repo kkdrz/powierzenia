@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: powierzenia
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: powierzenia
+      version: 'v1'
+  template:
+    metadata:
+      labels:
+        app: powierzenia
+        version: 'v1'
+    spec:
+      initContainers:
+        - name: init-ds
+          image: busybox:latest
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+              while true
+              do
+                rt=$(nc -z -w 1 powierzenia-postgresql 5432)
+                if [ $? -eq 0 ]; then
+                  echo "DB is UP"
+                  break
+                fi
+                echo "DB is not yet reachable;sleep for 10s before retry"
+                sleep 10
+              done
+            - |
+              while true
+              do
+                rt=$(nc -z -w 1 powierzenia-keycloak 9080)
+                if [ $? -eq 0 ]; then
+                  echo "Keycloak is UP"
+                  break
+                fi
+                echo "Keycloak is not yet reachable;sleep for 10s before retry"
+                sleep 10
+              done
+      containers:
+        - name: powierzenia-app
+          image: pmorski/powierzenia
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://powierzenia-postgresql:5432/powierzenia
+            - name: SPRING_DATASOURCE_USERNAME
+              value: powierzenia
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: powierzenia-postgresql
+                  key: postgresql-password
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI
+              value: http://powierzenia-keycloak:9080/auth/realms/master
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID
+              value: web_app
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET
+              value: web_app
+            - name: JAVA_OPTS
+              value: ' -Xmx256m -Xms256m'
+          # resources:
+          #   requests:
+          #     memory: '312Mi'
+          #     cpu: '400m'
+          #   limits:
+          #     memory: '600Mi'
+          #     cpu: '600'
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /management/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /management/info
+              port: http
+            initialDelaySeconds: 120
