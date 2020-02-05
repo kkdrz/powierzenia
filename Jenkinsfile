@@ -1,13 +1,13 @@
 #!/usr/bin/env groovy
 
 pipeline {
+    agent {
+
+    }
+    
     stages {
         stage('checkout') {
-           steps {
-               step('checkout') {
-                    checkout scm
-               }
-           } 
+            checkout scm
         }
 
         // stage('check java') {
@@ -46,13 +46,13 @@ pipeline {
         //     }
         // }
 
+        // stage('cleanup') {
+        //     archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
+        // }
+
         stage('publish to docker-hub') {
-            steps {
-                step('build image') {
-                    sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
-                    sh "docker push pmorski/powierzenia"
-                }
-            }
+            sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
+            sh "docker push pmorski/powierzenia"
         }
 
     }
