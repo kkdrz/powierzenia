@@ -42,10 +42,6 @@ pipeline {
             }
         }
 
-        stage('cleanup') {
-            archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
-        }
-
         stage('publish to docker-hub') {
             sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
             sh "docker push pmorski/powierzenia"
