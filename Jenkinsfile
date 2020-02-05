@@ -3,7 +3,11 @@
 pipeline {
     stages {
         stage('checkout') {
-            checkout scm
+           steps {
+               step('checkout') {
+                    checkout scm
+               }
+           } 
         }
 
         // stage('check java') {
@@ -43,8 +47,12 @@ pipeline {
         // }
 
         stage('publish to docker-hub') {
-            sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
-            sh "docker push pmorski/powierzenia"
+            stepc {
+                step('build image') {
+                    sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
+                    sh "docker push pmorski/powierzenia"
+                }
+            }
         }
 
     }
