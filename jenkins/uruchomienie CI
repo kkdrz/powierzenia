@@ -1,0 +1,7 @@
+1) postaw VM Jenkinsa - vagrant up
+2) zainstaluj w nim plugin Kubernetes continuous deploy
+3) utworz projekt 
+4) dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
+5) dodaj krok budowania - z konsola - ./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'
+6) dodaj krok pushowania obrazu - z konsola - docker push pmorski/powierzenia
+6) dodaj deploy with kubernetes - kubeconfig z pliku kubeconfig, config files 'powierzenia/', dodaj docker credentiale
