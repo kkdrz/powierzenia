@@ -52,7 +52,7 @@ pipeline {
 
         stage('publish to docker-hub') {
             steps {
-                sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
+                sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia' --debug"
                 sh "docker push pmorski/powierzenia"
             }
         }
