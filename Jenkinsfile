@@ -12,7 +12,8 @@ pipeline {
 
         stage('check java') {
             steps {
-            sh "java -version"
+                sh "java -version"
+            }
         }
 
         stage('clean') {
