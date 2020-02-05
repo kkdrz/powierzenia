@@ -34,6 +34,18 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "appsFolders": ["app-team10"],
+    "directoryPath": "../",
+    "jwtSecretKey": "NzNkZjAyYzUxMDE5OWE4MTliYTY5MzI4MThkNmQ1Nzg5YWNhNTU2N2ExOGMwMTgzZDVlZDJlOWYwMmY5NTA3NWUyMGFlNDBlZTIyMGY0ZDliZWYwNjAxNjAzYzYzNzQwMmNkNQ==",
+    "dockerRepositoryName": "pmorski",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "LoadBalancer",
+    "kubernetesUseDynamicStorage": true,
+    "kubernetesStorageClassName": "",
+    "ingressDomain": "",
+    "monitoring": "no",
+    "istio": false
   }
 }
