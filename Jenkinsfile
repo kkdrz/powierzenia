@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
-node {
+pipeline {
+    agent any
 
     stages {
         stage('checkout') {
