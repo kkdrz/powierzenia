@@ -10,18 +10,18 @@ pipeline {
             }
         }
 
-        stage('check java') {
-            steps {
-                sh "java -version"
-            }
-        }
+        // stage('check java') {
+        //     steps {
+        //         sh "java -version"
+        //     }
+        // }
 
-        stage('clean') {
-            steps {
-                sh "chmod +x gradlew"
-                sh "./gradlew clean --no-daemon"
-            }
-        }
+        // stage('clean') {
+        //     steps {
+        //         sh "chmod +x gradlew"
+        //         sh "./gradlew clean --no-daemon"
+        //     }
+        // }
         
         // stage('nohttp') {
         //     steps {
@@ -61,7 +61,7 @@ pipeline {
 
         stage('publish to docker-hub') {
             steps {
-                sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia' --debug"
+                sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
                 sh "docker push pmorski/powierzenia"
             }
         }

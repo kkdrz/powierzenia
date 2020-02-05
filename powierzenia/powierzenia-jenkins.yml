@@ -52,6 +52,13 @@ spec:
               mountPath: /var/jenkins_home
             - name: dockersock
               mountPath: "/var/run/docker.sock"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http-port
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 6
       volumes:
         - name: jenkins-home
           emptyDir: {}
