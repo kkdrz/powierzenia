@@ -24,6 +24,7 @@ RUN apt-get install -y docker-ce
 
 RUN apt-get update
 
+RUN systemctl enable docker
 RUN usermod -aG docker jenkins
 
 USER jenkins
