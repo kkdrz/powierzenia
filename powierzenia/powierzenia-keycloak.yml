@@ -30,6 +30,7 @@ spec:
     metadata:
       labels:
         app: powierzenia-keycloak
+        version: 'v1'
     spec:
       volumes:
       - name: powierzenia-keycloak-claim0
