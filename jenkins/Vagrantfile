@@ -87,17 +87,21 @@ Vagrant.configure("2") do |config|
     curl -sL https://deb.nodesource.com/setup_10.x | bash -
     apt-get install -y nodejs
 
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+
     usermod -aG docker vagrant
-		usermod -aG docker jenkins
-		usermod -aG npm jenkins
+	usermod -aG docker jenkins
 
     systemctl start jenkins.service
     systemctl enable jenkins.service
 
     systemctl start docker
     systemctl enable docker
-		echo -e "Jenkins unlock password: "
-		cat /var/lib/jenkins/secrets/initialAdminPassword
-		echo ""
+
+    echo -e "Jenkins unlock password: "
+	cat /var/lib/jenkins/secrets/initialAdminPassword
+	echo ""
   SHELL
 end

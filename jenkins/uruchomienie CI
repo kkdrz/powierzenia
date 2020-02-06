@@ -1,7 +1,11 @@
 1) postaw VM Jenkinsa - vagrant up
-2) zainstaluj w nim plugin Kubernetes continuous deploy
-3) utworz projekt 
-4) dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
-5) dodaj krok budowania - z konsola - ./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'
-6) dodaj krok pushowania obrazu - z konsola - docker push pmorski/powierzenia
-6) dodaj deploy with kubernetes - kubeconfig z pliku kubeconfig, config files 'powierzenia/', dodaj docker credentiale
+2) postaw VM Minikube'a
+3) zmien siec Minikube'a na bridge z tym samym adapterem co VM Jenkinsa, uruchom ponownie minikube i znajdz IP minikubea (np. minikube status)
+4) zainstaluj w nim plugin Kubernetes, Kubernetes CLI, Docker, Docker build  i Gradle
+5) skonfiguruj credentiale Kubernetesa wg https://github.com/jenkinsci/kubernetes-plugin#configuration-on-minikube
+6) utworz projekt
+7) dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
+8) dodaj krok ustawienia zmiennych kubectl - credentiale + c
+8) dodaj krok budowania - run  po kolei calle do gradle z Jenkinsfile'a
+9) dodaj krok budowania - publish to dockerhub
+10) dodaj krok budowania - deploy to kuberentes
