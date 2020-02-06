@@ -10,58 +10,58 @@ pipeline {
             }
         }
 
-        // stage('check java') {
-        //     steps {
-        //         sh "java -version"
-        //     }
-        // }
+        stage('check java') {
+            steps {
+                sh "java -version"
+            }
+        }
 
-        // stage('clean') {
-        //     steps {
-        //         sh "chmod +x gradlew"
-        //         sh "./gradlew clean --no-daemon"
-        //     }
-        // }
-        
-        // stage('nohttp') {
-        //     steps {
-        //         sh "./gradlew checkstyleNohttp --no-daemon"
-        //     }
-        // }
+        stage('clean') {
+            steps {
+                sh "chmod +x gradlew"
+                sh "./gradlew clean --no-daemon"
+            }
+        }
 
-        // stage('npm install') {
-        //     steps {
-        //         sh "./gradlew npm_install -PnodeInstall --no-daemon"
-        //     }
-        // }
+        stage('nohttp') {
+            steps {
+                sh "./gradlew checkstyleNohttp --no-daemon"
+            }
+        }
 
-        // stage('backend tests') {
-        //     steps {
-        //         try {
-        //             sh "./gradlew test integrationTest -PnodeInstall --no-daemon"
-        //         } catch(err) {
-        //             throw err
-        //         } finally {
-        //             junit '**/build/**/TEST-*.xml'
-        //         }
-        //     }
-        // }
+        stage('npm install') {
+            steps {
+                sh "./gradlew npm_install -PnodeInstall --no-daemon"
+            }
+        }
 
-        // stage('frontend tests') {
-        //     steps {
-        //         try {
-        //             sh "./gradlew npm_run_test-ci -PnodeInstall --no-daemon"
-        //         } catch(err) {
-        //             throw err
-        //         } finally {
-        //             junit '**/build/test-results/TESTS-*.xml'
-        //         }
-        //     }
-        // }
+        stage('backend tests') {
+            steps {
+                try {
+                    sh "./gradlew test integrationTest -PnodeInstall --no-daemon"
+                } catch(err) {
+                    throw err
+                } finally {
+                    junit '**/build/**/TEST-*.xml'
+                }
+            }
+        }
+
+        stage('frontend tests') {
+            steps {
+                try {
+                    sh "./gradlew npm_run_test-ci -PnodeInstall --no-daemon"
+                } catch(err) {
+                    throw err
+                } finally {
+                    junit '**/build/test-results/TESTS-*.xml'
+                }
+            }
+        }
 
         stage('publish to docker-hub') {
             steps {
-                sh "./gradlew -Pprod jibDockerBuild -Djib.to.image='pmorski/powierzenia'"
+                sh "./gradlew -Pprod jib -Djib.to.image='pmorski/powierzenia' -DallowInsecureRegistries=true"
                 sh "docker push pmorski/powierzenia"
             }
         }
