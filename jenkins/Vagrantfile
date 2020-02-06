@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
-  config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1"
+#   config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
 	#   vb.linked_clone = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "3096"
+     vb.memory = "5096"
      vb.cpus = 2
   end
   #
@@ -71,15 +71,15 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install git apt-transport-https ca-certificates curl software-properties-common openjdk-11-jdk-headless -y
-		
+
     curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
-    add-apt-repository "deb https://pkg.jenkins.io/debian binary/" 
+    add-apt-repository "deb https://pkg.jenkins.io/debian binary/"
     curl -fsSL  https://download.docker.com/linux/ubuntu/gpg | apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
 #    curl -sL https://deb.nodesource.com/setup_8.x | bash -
-#    sudo apt-get install git oracle-java8-installer sbt  nodejs jenkins -y 
+#    sudo apt-get install git oracle-java8-installer sbt  nodejs jenkins -y
 		apt-get update
-# Prevent running setup wizard (leave Jenkins unsecure!!!)		
+# Prevent running setup wizard (leave Jenkins unsecure!!!)
 #		mkdir -p /var/lib/jenkins
 #		echo -n "2.207" > /var/lib/jenkins/jenkins.install.InstallUtil.lastExecVersion
     apt-get install jenkins docker-ce -y
@@ -93,7 +93,7 @@ Vagrant.configure("2") do |config|
 
     systemctl start jenkins.service
     systemctl enable jenkins.service
-		
+
     systemctl start docker
     systemctl enable docker
 		echo -e "Jenkins unlock password: "
