@@ -19,6 +19,10 @@ metadata:
     app: powierzenia-keycloak
   name: powierzenia-keycloak
 spec:
+  selector:
+    matchLabels:
+      app: powierzenia-keycloak
+      version: 'v1'
   replicas: 1
   strategy:
     type: Recreate
