@@ -12,3 +12,6 @@
 - dodaj krok budowania - publish to dockerhub
 - dodaj krok budowania - uruchom powloke - kubectl set image deployment/powierzenia powierzenia-app=pmorski/powierzenia
 - dodaj krok budowania - uruchom powlokw - docker image rm pmorski/powierzenia
+
+
+PO RESTARCIE JENKINSA TRZEBA USTAWIC JESZCZE RAZ USTAWIENIA KUBECTL - Z JAKIEGOS POWODU RESETUJA SIE
