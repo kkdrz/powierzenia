@@ -142,26 +142,3 @@ Możesz skalować aplikację komendą:
 ```
 $ kubectl scale deployment <app-name> --replicas <replica-count>
 ```
-
-## zero-downtime deployments
-
-The default way to update a running app in kubernetes, is to deploy a new image tag to your docker registry and then deploy it using
-
-```
-$ kubectl set image deployment/<app-name>-app <app-name>=<new-image>
-```
-
-Using livenessProbes and readinessProbe allow you to tell Kubernetes about the state of your applications, in order to ensure availablity of your services. You will need minimum 2 replicas for every application deployment if you want to have zero-downtime deployed.
-This is because the rolling upgrade strategy first stops a running replica in order to place a new. Running only one replica, will cause a short downtime during upgrades.
-
-[jhipster]: https://www.jhipster.tech
-[node.js]: https://nodejs.org/
-[yarn]: https://yarnpkg.org/
-[webpack]: https://webpack.github.io/
-[angular cli]: https://cli.angular.io/
-[browsersync]: https://www.browsersync.io/
-[jest]: https://facebook.github.io/jest/
-[jasmine]: https://jasmine.github.io/2.0/introduction.html
-[protractor]: https://angular.github.io/protractor/
-[leaflet]: https://leafletjs.com/
-[definitelytyped]: https://definitelytyped.org/
