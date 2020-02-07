@@ -1,12 +1,14 @@
-1) postaw VM Jenkinsa - vagrant up
-2) postaw VM Minikube'a
-3) zmien siec Minikube'a na bridge z tym samym adapterem co VM Jenkinsa, uruchom ponownie minikube i znajdz IP minikubea (np. minikube status)
-4) zainstaluj w nim plugin Kubernetes, Kubernetes CLI, Docker, CloudBees Docker Build and Publish i Gradle
-5) skonfiguruj credentiale Kubernetesa wg https://github.com/jenkinsci/kubernetes-plugin#configuration-on-minikube
-6) utworz projekt
-7) dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
-8) dodaj krok ustawienia zmiennych kubectl - credentiale + c
-8) dodaj krok budowania - run  po kolei calle do gradle z Jenkinsfile'a
-9) dodaj krok budowania - publish to dockerhub
-10) dodaj krok budowania - uruchom powloke - kubectl set image deployment/powierzenia powierzenia-app=pmorski/powierzenia
-11) dodaj krok budowania - uruchom powlokw - docker image rm pmorski/powierzenia
+- postaw VM Jenkinsa - vagrant up
+- postaw VM Minikube'a
+- zmien siec Minikube'a na bridge z tym samym adapterem co VM Jenkinsa, uruchom ponownie minikube i znajdz IP minikubea (np. minikube status)
+- uruchom na minikubie infrastrukture powierzeń
+- zainstaluj w nim plugin Kubernetes, Kubernetes CLI, Environment Injector, Docker i Gradle
+- skonfiguruj credentiale Kubernetesa wg https://github.com/jenkinsci/kubernetes-plugin#configuration-on-minikube
+- utworz projekt
+- ustaw zmiennie srodowiskowe $DOCKER_USERNAME i $DOCKER_PASSWORD
+- dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
+- dodaj krok ustawienia zmiennych kubectl - credentiale + c
+- dodaj krok budowania - run  po kolei calle do gradle z Jenkinsfile'a
+- dodaj krok budowania - publish to dockerhub
+- dodaj krok budowania - uruchom powloke - kubectl set image deployment/powierzenia powierzenia-app=pmorski/powierzenia
+- dodaj krok budowania - uruchom powlokw - docker image rm pmorski/powierzenia
