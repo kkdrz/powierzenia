@@ -16,6 +16,9 @@ export const Home = (props: IHomeProp) => {
       <Col md="9">
         <h2>Welcome!</h2>
         <p className="lead">This is your homepage</p>
+        <p className="lead">This is your homepage</p>
+        <p className="lead">This is your homepage</p>
+        <p className="lead">This is your homepage</p>
         {account && account.login ? (
           <div>
             <Alert color="success">You are logged in as user {account.login}.</Alert>

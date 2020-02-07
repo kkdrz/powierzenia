@@ -61,7 +61,7 @@ pipeline {
 
         stage('publish to docker-hub') {
             steps {
-                sh "./gradlew -Pprod jib -Djib.to.image='pmorski/powierzenia' -DallowInsecureRegistries=true"
+                sh "./gradlew jib -Djib.to.image=pmorski/powierzenia -Djib.to.auth.username=$USERNAME -Djib.to.auth.password=$PASSWORD"
                 sh "docker push pmorski/powierzenia"
             }
         }
