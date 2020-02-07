@@ -5,7 +5,7 @@
 - zainstaluj w nim plugin Kubernetes, Kubernetes CLI, Environment Injector, Docker i Gradle
 - skonfiguruj credentiale Kubernetesa wg https://github.com/jenkinsci/kubernetes-plugin#configuration-on-minikube
 - utworz projekt
-- ustaw zmiennie srodowiskowe $DOCKER_USERNAME i $DOCKER_PASSWORD
+- ustaw zmiennie srodowiskowe $DOCKER_USERNAME i hasło-zmienna srodowiskowa wg Environment Injector $DOCKER_PASSWORD
 - dodaj repo zrodlowe - https://github.com/pwr-twwo/app-team10
 - dodaj krok ustawienia zmiennych kubectl - credentiale + c
 - dodaj krok budowania - run  po kolei calle do gradle z Jenkinsfile'a
